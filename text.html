@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Negocio - Gestión Completa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .notch {
+            width: 200px;
+            height: 30px;
+            background: black;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 20px 20px;
+            z-index: 1000;
+        }
+
+        .screen {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #f5f5f5;
+            animation: slideIn 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0066CC 0%, #004999 100%);
+            color: white;
+            padding: 50px 20px 20px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .header-actions {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0066CC;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .stat-trend {
+            font-size: 12px;
+            color: #4CAF50;
+            margin-top: 5px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .see-all {
+            font-size: 14px;
+            color: #0066CC;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Action Cards */
+        .action-card {
+            background: white;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .action-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .action-info {
+            flex: 1;
+        }
+
+        .action-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .action-subtitle {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Promotion Card */
+        .promo-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .promo-header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+            color: white;
+            padding: 15px;
+        }
+
+        .promo-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .promo-dates {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .promo-body {
+            padding: 15px;
+        }
+
+        .promo-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .promo-stat {
+            text-align: center;
+        }
+
+        .promo-stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0066CC;
+        }
+
+        .promo-stat-label {
+            font-size: 11px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .promo-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-small {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-edit {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-delete {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0066CC;
+        }
+
+        textarea.form-input {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #0066CC;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 15px;
+            background: white;
+            color: #0066CC;
+            border: 2px solid #0066CC;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: #0066CC;
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+
+        .empty-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .empty-subtitle {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge.inactive {
+            background: #999;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            background: white;
+            height: 65px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .nav-item.active {
+            color: #0066CC;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        .nav-label {
+            font-size: 11px;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 50px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 100;
+            font-size: 20px;
+        }
+
+        /* Chart Placeholder */
+        .chart-placeholder {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            height: 120px;
+            margin-bottom: 10px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, #0066CC, #667eea);
+            border-radius: 6px 6px 0 0;
+        }
+
+        .chart-labels {
+            display: flex;
+            justify-content: space-around;
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #E3F2FD;
+            border-left: 4px solid #0066CC;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h4 {
+            color: #0066CC;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 28px;
+            background: #ccc;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #4CAF50;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(22px);
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="notch"></div>
+
+        <!-- SCREEN 1: DASHBOARD PRINCIPAL -->
+        <div class="screen active" id="dashboardMain">
+            <div class="header">
+                <div class="header-actions">
+                    <div class="icon-btn" onclick="alert('Notificaciones')">🔔</div>
+                    <div class="icon-btn" onclick="showScreen('settingsScreen')">⚙️</div>
+                </div>
+                <h1>Restaurante El Cangrejo</h1>
+                <p>Plan Emprendedor • 28 días restantes</p>
+            </div>
+
+            <div class="content">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">247</div>
+                        <div class="stat-label">Vistas esta semana</div>
+                        <div class="stat-trend">↑ +18% vs semana anterior</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">32</div>
+                        <div class="stat-label">Clicks al teléfono</div>
+                        <div class="stat-trend">↑ +12% vs semana anterior</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">4.8</div>
+                        <div class="stat-label">Rating promedio</div>
+                        <div class="stat-trend">⭐ 15 reseñas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">Promociones activas</div>
+                        <div class="stat-trend">📍 Vistas 89 veces</div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="section-title">
+                    Acciones Rápidas
+                </div>
+
+                <div class="action-card" onclick="showScreen('createPromoScreen')">
+                    <div class="action-icon">🎁</div>
+                    <div class="action-info">
+                        <div class="action-title">Crear Promoción</div>
+                        <div class="action-subtitle">Atrae más clientes con ofertas</div>
+                    </div>
+                </div>
+
+                <div class="action-card" onclick="showScreen('editProfileScreen')">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">✏️</div>
+                    <div class="action-info">
+                        <div class="action-title">Editar Perfil</div>
+                        <div class="action-subtitle">Actualiza info, fotos y horarios</div>
+                    </div>
+                </div>
+
+                <div class="action-card" onclick="showScreen('statsScreen')">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📊</div>
+                    <div class="action-info">
+                        <div class="action-title">Ver Estadísticas</div>
+                        <div class="action-subtitle">Análisis detallado del rendimiento</div>
+                    </div>
+                </div>
+
+                <div class="action-card" onclick="showScreen('reviewsScreen')">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);">⭐</div>
+                    <div class="action-info">
+                        <div class="action-title">Reseñas (15)</div>
+                        <div class="action-subtitle">3 nuevas por responder</div>
+                    </div>
+                </div>
+
+                <!-- Recent Promotions Preview -->
+                <div class="section-title">
+                    Promociones Activas
+                    <span class="see-all" onclick="showScreen('myPromosScreen')">Ver todas</span>
+                </div>
+
+                <div class="promo-card">
+                    <div class="promo-header">
+                        <div class="promo-title">2x1 en Ceviches</div>
+                        <div class="promo-dates">Válida hasta: 31 Enero 2026</div>
+                    </div>
+                    <div class="promo-body">
+                        <p style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                            Todos los miércoles disfruta de 2 ceviches al precio de 1
+                        </p>
+                        <div class="promo-stats">
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">67</div>
+                                <div class="promo-stat-label">Vistas</div>
+                            </div>
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">12</div>
+                                <div class="promo-stat-label">Guardados</div>
+                            </div>
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">5</div>
+                                <div class="promo-stat-label">Compartidos</div>
+                            </div>
+                        </div>
+                        <div class="promo-actions">
+                            <button class="btn-small btn-edit" onclick="editPromo(1)">Editar</button>
+                            <button class="btn-small btn-delete" onclick="deletePromo(1)">Pausar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item active">
+                    <div class="nav-icon">🏠</div>
+                    <div class="nav-label">Inicio</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('myPromosScreen')">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('statsScreen')">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-label">Estadísticas</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('settingsScreen')">
+                    <div class="nav-icon">⚙️</div>
+                    <div class="nav-label">Ajustes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: CREAR PROMOCIÓN -->
+        <div class="screen" id="createPromoScreen">
+            <div class="back-btn" onclick="showScreen('dashboardMain')">←</div>
+            <div class="header">
+                <h1>Nueva Promoción</h1>
+                <p>Atrae más clientes con ofertas especiales</p>
+            </div>
+
+            <div class="content">
+                <div class="info-box">
+                    <h4>💡 Consejos para una buena promoción</h4>
+                    <p>• Sé claro y específico<br>• Incluye fechas y condiciones<br>• Usa imágenes atractivas</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Título de la Promoción *</label>
+                    <input type="text" class="form-input" placeholder="Ej: 2x1 en Almuerzos">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Descripción *</label>
+                    <textarea class="form-input" placeholder="Describe tu promoción en detalle..."></textarea>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">Fecha Inicio *</label>
+                        <input type="date" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fecha Fin *</label>
+                        <input type="date" class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Porcentaje de Descuento (opcional)</label>
+                    <input type="number" class="form-input" placeholder="Ej: 20">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Imagen de la Promoción</label>
+                    <div style="border: 2px dashed #e0e0e0; border-radius: 12px; padding: 30px; text-align: center; cursor: pointer;" onclick="alert('Seleccionar imagen')">
+                        <div style="font-size: 48px; margin-bottom: 10px;">📷</div>
+                        <p style="font-size: 14px; color: #666;">Toca para subir imagen</p>
+                        <p style="font-size: 12px; color: #999; margin-top: 5px;">JPG, PNG (máx 5MB)</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Términos y Condiciones (opcional)</label>
+                    <textarea class="form-input" placeholder="Válido de lunes a viernes. No acumulable con otras ofertas..."></textarea>
+                </div>
+
+                <button class="btn-primary" onclick="publishPromo()">
+                    Publicar Promoción
+                </button>
+
+                <button class="btn-secondary" onclick="showScreen('dashboardMain')">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: MIS PROMOCIONES -->
+        <div class="screen" id="myPromosScreen">
+            <div class="back-btn" onclick="showScreen('dashboardMain')">←</div>
+            <div class="header">
+                <h1>Mis Promociones</h1>
+                <p>Gestiona tus ofertas activas</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active">Activas (2)</div>
+                <div class="tab">Programadas (1)</div>
+                <div class="tab">Finalizadas (5)</div>
+            </div>
+
+            <div class="content">
+                <button class="btn-primary" style="margin-bottom: 20px;" onclick="showScreen('createPromoScreen')">
+                    + Nueva Promoción
+                </button>
+
+                <div class="promo-card">
+                    <div class="promo-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="promo-title">2x1 en Ceviches</div>
+                                <div class="promo-dates">Válida: 15 Ene - 31 Ene 2026</div>
+                            </div>
+                            <span class="badge">Activa</span>
+                        </div>
+                    </div>
+                    <div class="promo-body">
+                        <p style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                            Todos los miércoles disfruta de 2 ceviches al precio de 1. No acumulable con otras ofertas.
+                        </p>
+                        <div class="promo-stats">
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">67</div>
+                                <div class="promo-stat-label">Vistas</div>
+                            </div>
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">12</div>
+                                <div class="promo-stat-label">Guardados</div>
+                            </div>
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">5</div>
+                                <div class="promo-stat-label">Compartidos</div>
+                            </div>
+                        </div>
+                        <div class="promo-actions">
+                            <button class="btn-small btn-edit">Editar</button>
+                            <button class="btn-small btn-delete">Pausar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promo-card">
+                    <div class="promo-header" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="promo-title">Almuerzo Especial $5</div>
+                                <div class="promo-dates">Válida: 11 Ene - 28 Feb 2026</div>
+                            </div>
+                            <span class="badge">Activa</span>
+                        </div>
+                    </div>
+                    <div class="promo-body">
+                        <p style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                            Almuerzo completo por solo $5. Incluye sopa, segundo y jugo natural.
+                        </p>
+                        <div class="promo-stats">
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">134</div>
+                                <div class="promo-stat-label">Vistas</div>
+                            </div>
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">28</div>
+                                <div class="promo-stat-label">Guardados</div>
+                            </div>
+                            <div class="promo-stat">
+                                <div class="promo-stat-value">9</div>
+                                <div class="promo-stat-label">Compartidos</div>
+                            </div>
+                        </div>
+                        <div class="promo-actions">
+                            <button class="btn-small btn-edit">Editar</button>
+                            <button class="btn-small btn-delete">Pausar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 20px;">
+                    <h4>📈 Rendimiento de promociones</h4>
+                    <p>Tus promociones han generado 201 vistas en los últimos 7 días. ¡Sigue así!</p>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="showScreen('dashboardMain')">
+                    <div class="nav-icon">🏠</div>
+                    <div class="nav-label">Inicio</div>
+                </div>
+                <div class="nav-item active">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('statsScreen')">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-label">Estadísticas</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('settingsScreen')">
+                    <div class="nav-icon">⚙️</div>
+                    <div class="nav-label">Ajustes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: ESTADÍSTICAS -->
+        <div class="screen" id="statsScreen">
+            <div class="back-btn" onclick="showScreen('dashboardMain')">←</div>
+            <div class="header">
+                <h1>Estadísticas</h1>
+                <p>Analiza el rendimiento de tu negocio</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active">7 Días</div>
+                <div class="tab">30 Días</div>
+                <div class="tab">Este Mes</div>
+            </div>
+
+            <div class="content">
+                <!-- Chart -->
+                <div class="chart-placeholder">
+                    <div class="chart-title">Vistas del Perfil</div>
+                    <div class="chart-bars">
+                        <div class="chart-bar" style="height: 45%;"></div>
+                        <div class="chart-bar" style="height: 60%;"></div>
+                        <div class="chart-bar" style="height: 35%;"></div>
+                        <div class="chart-bar" style="height: 80%;"></div>
+                        <div class="chart-bar" style="height: 90%;"></div>
+                        <div class="chart-bar" style="height: 70%;"></div>
+                        <div class="chart-bar" style="height: 100%;"></div>
+                    </div>
+                    <div class="chart-labels">
+                        <span>Lun</span>
+                        <span>Mar</span>
+                        <span>Mié</span>
+                        <span>Jue</span>
+                        <span>Vie</span>
+                        <span>Sáb</span>
+                        <span>Dom</span>
+                    </div>
+                </div>
+
+                <!-- Detailed Stats -->
+                <div class="section-title">Métricas Detalladas</div>
+
+                <div class="stat-card" style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 15px; font-weight: 600;">Vistas Totales</span>
+                        <span class="stat-value" style="font-size: 24px;">247</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: #f0f0f0; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 75%; height: 100%; background: linear-gradient(90deg, #0066CC, #667eea);"></div>
+                    </div>
+                    <div class="stat-trend" style="margin-top: 5px;">+18% comparado con la semana anterior</div>
+                </div>
+
+                <div class="stat-card" style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 15px; font-weight: 600;">Clicks al Teléfono</span>
+                        <span class="stat-value" style="font-size: 24px;">32</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: #f0f0f0; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 40%; height: 100%; background: linear-gradient(90deg, #f093fb, #f5576c);"></div>
+                    </div>
+                    <div class="stat-trend" style="margin-top: 5px;">+12% comparado con la semana anterior</div>
+                </div>
+
+                <div class="stat-card" style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 15px; font-weight: 600;">Clicks a Direcciones</span>
+                        <span class="stat-value" style="font-size: 24px;">18</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: #f0f0f0; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 25%; height: 100%; background: linear-gradient(90deg, #4facfe, #00f2fe);"></div>
+                    </div>
+                    <div class="stat-trend" style="margin-top: 5px;">+5% comparado con la semana anterior</div>
+                </div>
+
+                <!-- Popular Hours -->
+                <div class="section-title" style="margin-top: 30px;">Horarios Más Populares</div>
+                <div class="chart-placeholder">
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                        <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <div style="font-size: 20px; font-weight: 700; color: #0066CC;">28</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 3px;">12-2 PM</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <div style="font-size: 20px; font-weight: 700; color: #0066CC;">45</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 3px;">6-8 PM</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <div style="font-size: 20px; font-weight: 700; color: #0066CC;">12</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 3px;">8-10 PM</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <div style="font-size: 20px; font-weight: 700; color: #0066CC;">8</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 3px;">10-12 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 20px;">
+                    <h4>📊 Insights</h4>
+                    <p>Tus clientes buscan tu negocio principalmente entre las 6-8 PM. Considera publicar promociones en ese horario.</p>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="showScreen('dashboardMain')">
+                    <div class="nav-icon">🏠</div>
+                    <div class="nav-label">Inicio</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('myPromosScreen')">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item active">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-label">Estadísticas</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('settingsScreen')">
+                    <div class="nav-icon">⚙️</div>
+                    <div class="nav-label">Ajustes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 5: CONFIGURACIÓN -->
+        <div class="screen" id="settingsScreen">
+            <div class="back-btn" onclick="showScreen('dashboardMain')">←</div>
+            <div class="header">
+                <h1>Configuración</h1>
+                <p>Administra tu cuenta y plan</p>
+            </div>
+
+            <div class="content">
+                <!-- Plan Info -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 16px; margin-bottom: 20px;">
+                    <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Plan Emprendedor</div>
+                    <div style="font-size: 14px; opacity: 0.9; margin-bottom: 15px;">$19/mes • 28 días de prueba restantes</div>
+                    <button style="background: white; color: #667eea; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                        Mejorar a Premium
+                    </button>
+                </div>
+
+                <!-- Settings Groups -->
+                <div class="section-title">Perfil del Negocio</div>
+
+                <div class="action-card" onclick="showScreen('editProfileScreen')">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">✏️</div>
+                    <div class="action-info">
+                        <div class="action-title">Editar Información</div>
+                        <div class="action-subtitle">Nombre, descripción, contacto</div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📷</div>
+                    <div class="action-info">
+                        <div class="action-title">Fotos y Logo</div>
+                        <div class="action-subtitle">5 fotos • Logo actualizado</div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">🕐</div>
+                    <div class="action-info">
+                        <div class="action-title">Horarios de Atención</div>
+                        <div class="action-subtitle">Lun-Dom: 11:00 AM - 10:00 PM</div>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 30px;">Notificaciones</div>
+
+                <div class="stat-card" style="margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 600; margin-bottom: 3px;">Nuevas reseñas</div>
+                            <div style="font-size: 13px; color: #666;">Recibe alertas cuando alguien deje una reseña</div>
+                        </div>
+                        <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card" style="margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 600; margin-bottom: 3px;">Estadísticas semanales</div>
+                            <div style="font-size: 13px; color: #666;">Resumen cada lunes por email</div>
+                        </div>
+                        <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 600; margin-bottom: 3px;">Promociones push</div>
+                            <div style="font-size: 13px; color: #666;">Notificaciones sobre tus ofertas</div>
+                        </div>
+                        <div class="toggle-switch" onclick="this.classList.toggle('active')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 30px;">Cuenta</div>
+
+                <div class="action-card">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);">💳</div>
+                    <div class="action-info">
+                        <div class="action-title">Método de Pago</div>
+                        <div class="action-subtitle">Visa •••• 1234</div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">📄</div>
+                    <div class="action-info">
+                        <div class="action-title">Historial de Facturas</div>
+                        <div class="action-subtitle">Ver pagos anteriores</div>
+                    </div>
+                </div>
+
+                <button class="btn-secondary" style="margin-top: 20px; color: #d32f2f; border-color: #d32f2f;">
+                    Cerrar Sesión
+                </button>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="showScreen('dashboardMain')">
+                    <div class="nav-icon">🏠</div>
+                    <div class="nav-label">Inicio</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('myPromosScreen')">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('statsScreen')">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-label">Estadísticas</div>
+                </div>
+                <div class="nav-item active">
+                    <div class="nav-icon">⚙️</div>
+                    <div class="nav-label">Ajustes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 6: EDITAR PERFIL -->
+        <div class="screen" id="editProfileScreen">
+            <div class="back-btn" onclick="showScreen('settingsScreen')">←</div>
+            <div class="header">
+                <h1>Editar Perfil</h1>
+                <p>Actualiza la información de tu negocio</p>
+            </div>
+
+            <div class="content">
+                <div class="form-group">
+                    <label class="form-label">Nombre del Negocio</label>
+                    <input type="text" class="form-input" value="Restaurante El Cangrejo">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Categoría</label>
+                    <select class="form-input">
+                        <option selected>🍽️ Restaurantes</option>
+                        <option>☕ Cafeterías</option>
+                        <option>🛒 Supermercados</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Descripción</label>
+                    <textarea class="form-input">Especialidad en mariscos y comida costeña. El mejor ceviche de Guayaquil con ingredientes frescos del día.</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Teléfono</label>
+                    <input type="tel" class="form-input" value="+593 4 250 9012">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Dirección</label>
+                    <input type="text" class="form-input" value="Malecón 2000, local 45">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Sitio Web (opcional)</label>
+                    <input type="url" class="form-input" placeholder="www.ejemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Horario de Atención</label>
+                    <input type="text" class="form-input" value="Lun - Dom: 11:00 AM - 10:00 PM">
+                </div>
+
+                <button class="btn-primary">Guardar Cambios</button>
+                <button class="btn-secondary" onclick="showScreen('settingsScreen')">Cancelar</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 7: RESEÑAS -->
+        <div class="screen" id="reviewsScreen">
+            <div class="back-btn" onclick="showScreen('dashboardMain')">←</div>
+            <div class="header">
+                <h1>Reseñas</h1>
+                <p>4.8 ⭐ • 15 reseñas totales</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active">Todas (15)</div>
+                <div class="tab">Sin responder (3)</div>
+                <div class="tab">Respondidas (12)</div>
+            </div>
+
+            <div class="content">
+                <!-- Review Card -->
+                <div class="stat-card" style="margin-bottom: 15px;">
+                    <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                            JM
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; margin-bottom: 3px;">Juan Martínez</div>
+                            <div style="font-size: 13px; color: #666;">Hace 2 días</div>
+                            <div style="color: #FFC107; margin-top: 5px;">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 14px; color: #333; line-height: 1.5; margin-bottom: 12px;">
+                        Excelente ceviche! El mejor que he probado en Guayaquil. Muy fresco y bien servido. Totalmente recomendado.
+                    </p>
+                    <button class="btn-small btn-edit" style="width: auto;">Responder</button>
+                </div>
+
+                <div class="stat-card" style="margin-bottom: 15px;">
+                    <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                            MG
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; margin-bottom: 3px;">María González</div>
+                            <div style="font-size: 13px; color: #666;">Hace 5 días</div>
+                            <div style="color: #FFC107; margin-top: 5px;">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 14px; color: #333; line-height: 1.5; margin-bottom: 12px;">
+                        Ambiente agradable y buena atención. Los precios son justos y las porciones generosas.
+                    </p>
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 3px solid #0066CC; margin-top: 10px;">
+                        <div style="font-weight: 600; font-size: 13px; margin-bottom: 5px;">Tu respuesta:</div>
+                        <div style="font-size: 13px; color: #666;">¡Muchas gracias María! Nos alegra que hayas disfrutado tu visita. Te esperamos pronto.</div>
+                    </div>
+                </div>
+
+                <div class="empty-state" style="padding: 20px;">
+                    <div class="empty-icon">📝</div>
+                    <div class="empty-title">Sigue así</div>
+                    <div class="empty-subtitle">Responder a las reseñas ayuda a construir confianza con tus clientes.</div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="showScreen('dashboardMain')">
+                    <div class="nav-icon">🏠</div>
+                    <div class="nav-label">Inicio</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('myPromosScreen')">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('statsScreen')">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-label">Estadísticas</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('settingsScreen')">
+                    <div class="nav-icon">⚙️</div>
+                    <div class="nav-label">Ajustes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            const screen = document.getElementById(screenId);
+            if (screen) {
+                screen.classList.add('active');
+                screen.scrollTop = 0;
+            }
+
+            // Update nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+
+        function editPromo(id) {
+            alert('Editando promoción #' + id);
+        }
+
+        function deletePromo(id) {
+            if (confirm('¿Pausar esta promoción?')) {
+                alert('Promoción pausada exitosamente');
+            }
+        }
+
+        function publishPromo() {
+            alert('✅ ¡Promoción publicada exitosamente!\n\nTu promoción ya está visible para los clientes.');
+            showScreen('myPromosScreen');
+        }
+
+        console.log('🏪 Dashboard de Negocio - Marketplace Local EC');
+        console.log('📊 Sistema completo de gestión para negocios');
+    </script>
+</body>
+</html>
