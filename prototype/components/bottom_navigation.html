@@ -1,0 +1,43 @@
+<template id="bottom-nav-template">
+  <nav
+    class="z-30 flex h-20 w-full items-start justify-between border-t border-slate-100 dark:border-slate-800 bg-white/90 dark:bg-background-dark/90 px-6 pt-3 backdrop-blur-xl">
+
+    <a data-nav="map" href="../users/map.html"
+      class="nav-item flex flex-col items-center gap-1">
+      <span class="material-symbols-outlined text-2xl"
+      style="font-variation-settings: 'FILL' 1;">map</span>
+      <span class="text-[10px]">Map</span>
+    </a>
+
+    <a data-nav="coupons" href="../users/hot_cupons.html"
+      class="nav-item flex flex-col items-center gap-1">
+      <span class="material-symbols-outlined text-2xl"
+                style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+      <span class="text-[10px]">Hot Deals</span>
+    </a>
+
+    <a data-nav="favorites" href="../users/favorites_bussines.html"
+      class="nav-item flex flex-col items-center gap-1">
+      <span class="material-symbols-outlined text-2xl" 
+      style="font-variation-settings: 'FILL' 1;">favorite</span>
+      <span class="text-[10px]">Favorites</span>
+    </a>
+
+    <a data-nav="alerts" href="../users/notifications_list.html"
+      class="nav-item flex flex-col items-center gap-1 relative">
+      <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">notifications</span>
+      <span
+        class="absolute top-0 right-1 h-2 w-2 rounded-full bg-red-500 border-2 border-white dark:border-slate-900"
+        style="font-variation-settings: 'FILL' 1;">
+      </span>
+      <span class="text-[10px]" >Alerts</span>
+    </a>
+
+    <a data-nav="profile" href="../users/user_profile.html"
+      class="nav-item flex flex-col items-center gap-1">
+      <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">person</span>
+      <span class="text-[10px]">Profile</span>
+    </a>
+
+  </nav>
+</template>

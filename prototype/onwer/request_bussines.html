@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .ios-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-50 dark:bg-black text-[#111813] dark:text-white min-h-screen flex flex-col items-center">
+    <div
+        class="w-full max-w-md bg-background-light dark:bg-background-dark min-h-screen shadow-xl relative flex flex-col">
+        <!-- TopAppBar -->
+        <header
+            class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-4 flex items-center justify-between border-b border-[#dbe6df] dark:border-white/10">
+            <button class="flex items-center justify-center size-10 rounded-full bg-white dark:bg-white/5 ios-shadow">
+                <span class="material-symbols-outlined text-[#111813] dark:text-white">arrow_back_ios_new</span>
+            </button>
+            <h2 class="text-[#111813] dark:text-white text-lg font-bold leading-tight flex-1 text-center">Registro de
+                Negocio</h2>
+            <div class="size-10"></div> <!-- Spacer to center title -->
+        </header>
+        <main class="flex-1 overflow-y-auto pb-32">
+            <!-- ProgressBar -->
+            <div class="flex flex-col gap-3 p-4">
+                <div class="flex gap-6 justify-between">
+                    <p class="text-[#111813] dark:text-white/80 text-sm font-medium leading-normal">Paso 2 de 3</p>
+                    <p class="text-[#111813] dark:text-white/80 text-sm font-medium">Información Básica</p>
+                </div>
+                <div class="rounded-full bg-[#dbe6df] dark:bg-white/10 overflow-hidden">
+                    <div class="h-2 rounded-full bg-primary" style="width: 66%;"></div>
+                </div>
+            </div>
+            <!-- HeadlineText -->
+            <div class="px-4 pt-4">
+                <h3 class="text-[#111813] dark:text-white tracking-tight text-2xl font-bold leading-tight">Información
+                    del
+                    Negocio</h3>
+                <p class="text-[#61896f] dark:text-white/60 text-sm mt-1">Completa los detalles legales de tu
+                    establecimiento.</p>
+            </div>
+            <!-- Form Fields -->
+            <div class="flex flex-col gap-4 p-4">
+                <!-- TextField: Business Name -->
+                <label class="flex flex-col w-full">
+                    <p class="text-[#111813] dark:text-white/90 text-sm font-semibold leading-normal pb-1.5 px-1">Nombre
+                        del
+                        Negocio</p>
+                    <input
+                        class="form-input flex w-full rounded-xl text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary/30 border border-[#dbe6df] dark:border-white/10 bg-white dark:bg-white/5 h-14 placeholder:text-[#61896f] p-4 text-base font-normal leading-normal"
+                        placeholder="Ej. Panadería La Unión" type="text" />
+                </label>
+                <!-- TextField: RUC -->
+                <label class="flex flex-col w-full">
+                    <p class="text-[#111813] dark:text-white/90 text-sm font-semibold leading-normal pb-1.5 px-1">RUC
+                        (Registro Único de Contribuyentes)</p>
+                    <input
+                        class="form-input flex w-full rounded-xl text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary/30 border border-[#dbe6df] dark:border-white/10 bg-white dark:bg-white/5 h-14 placeholder:text-[#61896f] p-4 text-base font-normal leading-normal"
+                        inputmode="numeric" placeholder="12345678901" type="number" />
+                </label>
+                <!-- Location Picker -->
+                <div class="flex flex-col gap-2">
+                    <p class="text-[#111813] dark:text-white/90 text-sm font-semibold leading-normal px-1">Ubicación</p>
+                    <div
+                        class="relative w-full h-40 rounded-xl overflow-hidden border border-[#dbe6df] dark:border-white/10 group bg-[#e8eee9] dark:bg-white/5">
+                        <img alt="Mapa de ubicación" class="w-full h-full object-cover opacity-60"
+                            data-alt="Abstract map showing street layout with pin" data-location="Guayaquil, Ecuador"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtMeuzE_Q4fWBPcf2m2aDqxDyTBoxH9Ehk3yW_OnnZDoXkvHnrBRjL6R4WPDIt0onHFZjPgDEifcYkI1csFXGsTfAb8ep5Aau2kk3k6qrB7OVLz3qMPmYGDHhxkntzORSUA2rPClnTetGcnWiAO_ZwD-_cw8rwyEqA-Y7fBI2qLiQTEBGscakZirpDgYpZW4MUliNYRiu-aA1vHJhnrThqbH8wFLdDNX46BjMP8zcMW7ukQ0hVL7M9JT8bsLq5iPHeb8hnl3fwGuDX" />
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button
+                                class="bg-white dark:bg-background-dark px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-[#dbe6df] dark:border-white/10">
+                                <span class="material-symbols-outlined text-primary">location_on</span>
+                                <span class="text-sm font-bold text-[#111813] dark:text-white">Seleccionar en
+                                    mapa</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Photo Area -->
+                <div class="flex flex-col gap-2 pt-2">
+                    <p class="text-[#111813] dark:text-white/90 text-sm font-semibold leading-normal px-1">Foto del
+                        local
+                    </p>
+                    <div
+                        class="w-full h-48 border-2 border-dashed border-[#dbe6df] dark:border-white/20 rounded-xl bg-white dark:bg-white/5 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-primary/5 transition-colors">
+                        <div class="size-14 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-3xl">photo_camera</span>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[#111813] dark:text-white font-bold text-sm">Subir foto de la fachada</p>
+                            <p class="text-[#61896f] dark:text-white/50 text-xs">JPG, PNG o WEBP (Máx. 5MB)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Verification Info Box -->
+                <div class="bg-primary/10 dark:bg-primary/5 border border-primary/20 p-4 rounded-xl flex gap-3">
+                    <span class="material-symbols-outlined text-primary shrink-0">verified_user</span>
+                    <p class="text-xs text-[#111813] dark:text-white/80 leading-relaxed">
+                        <span class="font-bold">Nota:</span> Tu negocio será verificado por nuestro equipo antes de
+                        aparecer
+                        en el mapa para garantizar la seguridad de la comunidad. Tiempo estimado: 24h.
+                    </p>
+                </div>
+            </div>
+        </main>
+        <!-- Sticky Bottom Button -->
+        <div
+            class="fixed bottom-0 w-full max-w-md mx-auto left-0 right-0 p-4 bg-background-light dark:bg-background-dark border-t border-[#dbe6df] dark:border-white/10">
+            <button
+                class="w-full h-14 bg-primary text-[#111813] font-bold text-lg rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
+                <span>Enviar para Verificación</span>
+                <span class="material-symbols-outlined">send</span>
+            </button>
+        </div>
+    </div>
+
+</body>
+
+</html>

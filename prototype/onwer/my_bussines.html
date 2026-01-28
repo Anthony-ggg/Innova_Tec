@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <title>Mis Negocios</title>
+
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#111813] dark:text-white transition-colors duration-300">
+    <div
+        class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto bg-white dark:bg-[#0c1a10] shadow-2xl">
+        <!-- TopAppBar -->
+        <header
+            class="flex items-center bg-white dark:bg-[#0c1a10] px-4 py-4 justify-between border-b border-gray-100 dark:border-gray-800">
+            <div
+                class="text-[#111813] dark:text-white flex size-10 shrink-0 items-center justify-center cursor-pointer">
+                <span class="material-symbols-outlined">arrow_back_ios_new</span>
+            </div>
+            <h2
+                class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">
+                Mis Negocios</h2>
+        </header>
+        <!-- Content Area -->
+        <main class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+            <!-- ListItem 1: Pizzería Roma (Pending) -->
+            <div
+                class="flex flex-col gap-3 bg-white dark:bg-[#14291b] p-4 rounded-xl shadow-sm border border-gray-50 dark:border-gray-800">
+                <div class="flex items-center gap-4 justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14 shadow-inner"
+                            data-alt="Pizza freshly baked in a stone oven"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqjRx0o_H8vj858VVsP3l6OLA5PepMAVAtpqJN7xlhbd2OgHfala6d_myQ5k5Fh8d9nd75zVcFERc83AsyhMoa2PT-Dy0uUrxM8Hc1DB31HkKOWJ2M4TEiDB7Wp0TRN0xTey0clJSDZblTchY0MTioYDlxs4-UOzsTbAcOj5kXrnrwmGUVAONnz5sKXL4Z76RqICDLI-6ikR4sNKF5Y1Gk2DzVEpBqeaqV5lEGU9CZN7FAzM7BUmTC9jKYEeslnzIOztB0Au0CeCcR");'>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <p class="text-[#111813] dark:text-white text-base font-semibold leading-normal">Pizzería
+                                Roma</p>
+                            <p class="text-[#61896f] dark:text-[#a0c4ae] text-sm font-normal">En revisión</p>
+                        </div>
+                    </div>
+                    <div class="shrink-0">
+                        <span
+                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400">
+                            PENDIENTE
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- ListItem 2: Tienda de Ropa Chic (Active) -->
+            <div
+                class="flex flex-col gap-3 bg-white dark:bg-[#14291b] p-4 rounded-xl shadow-sm border border-gray-50 dark:border-gray-800">
+                <div class="flex items-center gap-4 justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14 shadow-inner"
+                            data-alt="Modern fashion clothing store interior"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNtYB0mhsjB5dzrwiOZZD1E-qQ5vgs918wrx5AO0dyP_CDs9gZWNSrPFjDM5W55W1KIVeBz8wBsI4m9yfyYsZTz3J5qcC4Q6NIc7xiJ-6wCD0jRCSfPpnmZZu3eVXd4_x8uTYbtJcZ0JnQ6Pm15AcynThkC3A-0AhSIG-tVOnM_89IFdD8LPoV_L5HrAB0yi-rUgwUTnUQSZ4_QjDEYA-B6TN9pPdKe6S9GB0Hy2lXmSHQc0H2B7AdKkoo9gdwoVtEOFMclVumcbmO");'>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <p class="text-[#111813] dark:text-white text-base font-semibold leading-normal">Tienda de
+                                Ropa Chic</p>
+                            <p class="text-[#61896f] dark:text-[#a0c4ae] text-sm font-normal">Publicado recientemente
+                            </p>
+                        </div>
+                    </div>
+                    <div class="shrink-0">
+                        <div class="flex size-8 items-center justify-center rounded-full bg-primary/20 text-primary">
+                            <span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-1">
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-primary/20 text-[#078829] dark:text-primary">
+                        ACTIVO
+                    </span>
+                </div>
+            </div>
+            <!-- ListItem 3: Café del Sol (Rejected) -->
+            <div
+                class="flex flex-col gap-3 bg-white dark:bg-[#14291b] p-4 rounded-xl shadow-sm border border-gray-50 dark:border-gray-800">
+                <div class="flex items-start gap-4 justify-between">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14 shadow-inner"
+                            data-alt="Cozy coffee shop terrace in sunshine"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuARBzontSDxJZ5IiREJWgitp0yAx2_92bMRAwIjtTjHGTUo7cC-BWFmFNeBdev6Cmx3q-U9OBFw8fioea6D-BS75LGA7TU_svLTwlphQ6KPTkO9txa2I6JfZML0AUPqh8Lg_IqXUfCSMyuqp3_QsRqBKANZVPqHaSsYQbDV6sz7a2cqTOtj-belSxk7aBoJVhbc3iaV-gAEVqmP8w4pZLyTiFLymLqL4SRIQ62wEbeR6gM9zp-3SQF18WRuOCsv9mKt54Y0Rbm5HuUY");'>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <p class="text-[#111813] dark:text-white text-base font-semibold leading-normal">Café del
+                                Sol</p>
+                            <p class="text-[#61896f] dark:text-[#a0c4ae] text-sm font-normal">Rechazado</p>
+                        </div>
+                    </div>
+                    <div class="shrink-0">
+                        <span
+                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400">
+                            RECHAZADO
+                        </span>
+                    </div>
+                </div>
+                <div
+                    class="flex justify-between items-center mt-1 pt-2 border-t border-gray-50 dark:border-gray-800/50">
+                    <p class="text-xs text-[#61896f] dark:text-[#a0c4ae]">Toca para ver el motivo</p>
+                    <button class="text-sm font-bold text-red-600 dark:text-red-400 flex items-center gap-1">
+                        Ver motivo
+                        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+        <!-- Floating Action Button (FAB) -->
+        <div class="absolute bottom-8 right-6 z-10">
+            <button
+                class="flex size-16 cursor-pointer items-center justify-center rounded-full bg-primary text-[#111813] shadow-lg hover:brightness-95 active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[32px] font-bold">add</span>
+            </button>
+        </div>
+        <!-- Bottom Tab Bar (iOS Style) -->
+        <footer
+            class="bg-white dark:bg-[#0c1a10] border-t border-gray-100 dark:border-gray-800 flex justify-around items-center py-3 pb-6">
+            <div class="flex flex-col items-center gap-1 opacity-40">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[10px] font-medium">Inicio</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">storefront</span>
+                <span class="text-[10px] font-medium">Mis Negocios</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 opacity-40">
+                <span class="material-symbols-outlined">confirmation_number</span>
+                <span class="text-[10px] font-medium">Cupones</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 opacity-40">
+                <span class="material-symbols-outlined">person</span>
+                <span class="text-[10px] font-medium">Perfil</span>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Admin Analytics Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1a2232",
+                        "accent-success": "#10b981",
+                        "accent-warning": "#f59e0b"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .custom-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+    <!-- Sidebar / Navigation Drawer (Overlay Hidden by default in real app, shown for UI representation) -->
+    <div class="fixed inset-0 z-50 pointer-events-none overflow-hidden" id="drawer">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300"></div>
+        <!-- Drawer Content -->
+        <div
+            class="absolute left-0 top-0 h-full w-4/5 max-w-xs bg-background-dark border-r border-white/10 p-6 transform -translate-x-full transition-transform duration-300 ease-out pointer-events-auto shadow-2xl">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="bg-primary w-10 h-10 rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white">analytics</span>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight">Admin Pro</h2>
+            </div>
+            <nav class="space-y-2">
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary text-white" href="#">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">group</span>
+                    <span class="font-medium">Usuarios</span>
+                </a>
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">storefront</span>
+                    <span class="font-medium">Negocios</span>
+                </a>
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">confirmation_number</span>
+                    <span class="font-medium">Cupones</span>
+                </a>
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">assessment</span>
+                    <span class="font-medium">Reportes</span>
+                </a>
+            </nav>
+            <div class="absolute bottom-8 left-6 right-6">
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                    <div class="w-10 h-10 rounded-full bg-slate-700 overflow-hidden">
+                        <img alt="Admin avatar" data-alt="Close up portrait of a professional man smiling"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgLLR15LoYXkQiLfteCySTfdK1rVk9S5IA4X_blEAzEjT9GyICh4IzycNVssp6bCrC5QLgNZ-IR-Qlj_OW0IbFmx5Ib3NljQjfYEwyHKtS9rxNl0t9ip8TYN7USSWJOOiQt7-4ZgcYkDVebl5pl0ZAAGZdzlXUwW8OXHgAhKuHNZZfn65Uu9lITFINsGK9YS3A4YPA95TWoSzZN7YeDO7qNfV_QA3OPmCNLI3JFLNdYzHVxKs-YkRxWzWGzt_Fys4MlOKT2jGqQggk" />
+                    </div>
+                    <div class="flex-1 overflow-hidden">
+                        <p class="text-sm font-semibold truncate">Alex Rivera</p>
+                        <p class="text-xs text-slate-500 truncate">Super Admin</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-500 text-sm">logout</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="min-h-screen flex flex-col">
+        <!-- TopAppBar -->
+        <header
+            class="sticky top-0 z-40 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-black/5 dark:border-white/5">
+            <div class="flex items-center gap-3">
+                <button
+                    class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <h1 class="text-lg font-bold tracking-tight">Analytics</h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <button
+                    class="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span
+                        class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-background-dark"></span>
+                </button>
+                <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-white/10">
+                    <img alt="Profile" data-alt="Small circular profile photo of admin"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKEiOY9rpTdteZJSY0tGrSFUGSdjOL0JLvsXEHtgwop94cDA57CiTiE8bmWkDz6nLIZe1sH_ORou3E0Z74DLEAznofCStiByJcmYr9dU9F0elAyR8Icl_sTffHh_wHpTN1tYQLWw3Gd0PJ7VyjO9SsIulVgYcnneAkZyGD2DYrLuVTkhYhVU12wlrsXDey6kcXl3NnoMBOGrlZzZb126q-3EUg9UxJZ89bi4X648SzSXthTI-zOLfwZtWBdQoLE6kghQWWFt-G9D4X" />
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 p-4 pb-24 max-w-md mx-auto w-full space-y-6">
+            <!-- Key Metrics Stats (Grid) -->
+            <section>
+                <div class="grid grid-cols-2 gap-3">
+                    <div
+                        class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5 flex flex-col gap-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="material-symbols-outlined text-primary text-xl">group</span>
+                            <span class="text-xs font-bold text-accent-success">+12%</span>
+                        </div>
+                        <p class="text-xs text-slate-500 font-medium">Usuarios Totales</p>
+                        <p class="text-xl font-bold">12.5k</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5 flex flex-col gap-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="material-symbols-outlined text-accent-success text-xl">storefront</span>
+                            <span class="text-xs font-bold text-accent-success">+5%</span>
+                        </div>
+                        <p class="text-xs text-slate-500 font-medium">Negocios Activos</p>
+                        <p class="text-xl font-bold">840</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5 flex flex-col gap-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="material-symbols-outlined text-purple-500 text-xl">confirmation_number</span>
+                            <span class="text-xs font-bold text-accent-success">+18%</span>
+                        </div>
+                        <p class="text-xs text-slate-500 font-medium">Cupones</p>
+                        <p class="text-xl font-bold">3.2k</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5 flex flex-col gap-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="material-symbols-outlined text-orange-400 text-xl">payments</span>
+                            <span class="text-xs font-bold text-red-500">-2%</span>
+                        </div>
+                        <p class="text-xs text-slate-500 font-medium">Ingresos</p>
+                        <p class="text-xl font-bold">$45.2k</p>
+                    </div>
+                </div>
+            </section>
+            <!-- SectionHeader -->
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold">Crecimiento de Usuarios</h3>
+                <button class="text-xs font-bold text-primary px-3 py-1 rounded-full bg-primary/10">6 Meses</button>
+            </div>
+            <!-- Chart: Line Graph -->
+            <div class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5">
+                <div class="mb-4">
+                    <p class="text-2xl font-bold">+2,400 <span class="text-sm font-normal text-slate-500">este
+                            mes</span></p>
+                </div>
+                <div class="relative h-48 w-full">
+                    <!-- SVG Chart -->
+                    <svg class="w-full h-full overflow-visible" viewbox="0 0 400 150">
+                        <defs>
+                            <lineargradient id="lineGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+                                <stop offset="0%" stop-color="#135bec" stop-opacity="0.3"></stop>
+                                <stop offset="100%" stop-color="#135bec" stop-opacity="0"></stop>
+                            </lineargradient>
+                        </defs>
+                        <!-- Area -->
+                        <path
+                            d="M0,130 C40,120 80,140 120,80 C160,20 200,60 240,40 C280,20 320,50 360,10 L400,10 L400,150 L0,150 Z"
+                            fill="url(#lineGrad)"></path>
+                        <!-- Line -->
+                        <path d="M0,130 C40,120 80,140 120,80 C160,20 200,60 240,40 C280,20 320,50 360,10" fill="none"
+                            stroke="#135bec" stroke-linecap="round" stroke-width="3"></path>
+                        <!-- Points -->
+                        <circle cx="120" cy="80" fill="#135bec" r="4"></circle>
+                        <circle cx="240" cy="40" fill="#135bec" r="4"></circle>
+                        <circle cx="360" cy="10" fill="#135bec" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="flex justify-between mt-4">
+                    <span class="text-[10px] font-bold text-slate-500">ENE</span>
+                    <span class="text-[10px] font-bold text-slate-500">FEB</span>
+                    <span class="text-[10px] font-bold text-slate-500">MAR</span>
+                    <span class="text-[10px] font-bold text-slate-500">ABR</span>
+                    <span class="text-[10px] font-bold text-slate-500">MAY</span>
+                    <span class="text-[10px] font-bold text-slate-500">JUN</span>
+                </div>
+            </div>
+            <!-- SectionHeader -->
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold">Categorías más populares</h3>
+                <span class="material-symbols-outlined text-slate-400">more_horiz</span>
+            </div>
+            <!-- Chart: Bar Chart -->
+            <div class="bg-white dark:bg-card-dark p-6 rounded-2xl shadow-sm border border-black/5 dark:border-white/5">
+                <div class="flex items-end justify-between h-40 gap-4">
+                    <div class="flex-1 flex flex-col items-center gap-2">
+                        <div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500" style="height: 60%">
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500">Comida</span>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center gap-2">
+                        <div class="w-full bg-primary rounded-t-lg transition-all duration-500" style="height: 100%">
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500">Ropa</span>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center gap-2">
+                        <div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500" style="height: 45%">
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500">Salud</span>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center gap-2">
+                        <div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500" style="height: 75%">
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500">Hogar</span>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center gap-2">
+                        <div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500" style="height: 30%">
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-500">Otros</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Alert Section -->
+            <div class="flex items-center justify-between pt-2">
+                <h3 class="text-lg font-bold">Alertas Recientes</h3>
+                <a class="text-xs font-semibold text-primary" href="#">Ver todo</a>
+            </div>
+            <div class="space-y-3">
+                <!-- Alert Item -->
+                <div
+                    class="bg-white dark:bg-card-dark p-4 rounded-2xl border border-black/5 dark:border-white/5 flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-accent-warning/10 text-accent-warning flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined">pending_actions</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-sm font-bold">Verificación Pendiente</h4>
+                            <span class="text-[10px] text-slate-500">Ahora</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-3 leading-relaxed">"Pizza Palace" ha solicitado la
+                            verificación de su negocio para publicar cupones.</p>
+                        <div class="flex gap-2">
+                            <button
+                                class="flex-1 py-2 text-xs font-bold bg-primary text-white rounded-lg">Revisar</button>
+                            <button
+                                class="px-3 py-2 text-xs font-bold bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 rounded-lg">Ignorar</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Alert Item -->
+                <div
+                    class="bg-white dark:bg-card-dark p-4 rounded-2xl border border-black/5 dark:border-white/5 flex items-start gap-4 opacity-80">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-accent-success/10 text-accent-success flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined">trending_up</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-sm font-bold">Pico de Canje</h4>
+                            <span class="text-[10px] text-slate-500">2h atrás</span>
+                        </div>
+                        <p class="text-xs text-slate-500 leading-relaxed">Se detectó un aumento del 40% en canjes en la
+                            categoría "Retail" durante la última hora.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Bottom Navigation (iOS Style) -->
+        <nav
+            class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-background-dark/80 backdrop-blur-xl border-t border-black/5 dark:border-white/5 px-6 pb-6 pt-3 flex justify-between items-center z-40">
+            <button class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined font-variation-fill text-2xl">home</span>
+                <span class="text-[10px] font-bold">Inicio</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-slate-400">
+                <span class="material-symbols-outlined text-2xl">group</span>
+                <span class="text-[10px] font-bold">Usuarios</span>
+            </button>
+            <div class="relative -top-6">
+                <button
+                    class="w-14 h-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined text-3xl">add</span>
+                </button>
+            </div>
+            <button class="flex flex-col items-center gap-1 text-slate-400">
+                <span class="material-symbols-outlined text-2xl">storefront</span>
+                <span class="text-[10px] font-bold">Tiendas</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-slate-400">
+                <span class="material-symbols-outlined text-2xl">settings</span>
+                <span class="text-[10px] font-bold">Ajustes</span>
+            </button>
+        </nav>
+    </div>
+    <!-- Script to simulate drawer toggle for presentation -->
+    <script>
+        // Only for demonstration purpose to allow seeing the navigation drawer
+        document.querySelector('button').addEventListener('click', function () {
+            const drawer = document.getElementById('drawer');
+            const overlay = drawer.querySelector('.absolute.bg-black\\/60');
+            const content = drawer.querySelector('.absolute.left-0');
+
+            drawer.classList.remove('pointer-events-none');
+            overlay.classList.add('opacity-100');
+            content.classList.remove('-translate-x-full');
+
+            overlay.addEventListener('click', function hide() {
+                overlay.classList.remove('opacity-100');
+                content.classList.add('-translate-x-full');
+                setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
+                overlay.removeEventListener('click', hide);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Favorite Businesses - CUPONEA</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div
+        class="relative mx-auto flex h-screen w-full max-w-7xl flex-col overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
+        <header
+            class="sticky top-0 z-30 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 pt-12 pb-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold tracking-tight">Favorite Businesses</h1>
+                <button
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">search</span>
+                </button>
+            </div>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Manage your saved local stores</p>
+        </header>
+        <main
+            class="flex-1 overflow-y-auto no-scrollbar px-4 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 content-start">
+            <div
+                class="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+                <div class="h-20 w-20 shrink-0 overflow-hidden rounded-xl">
+                    <div class="h-full w-full bg-cover bg-center"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA1hSFxsKrkSvNqyBBzgQgyu_J8kXWho2ctHF37cE368gKEB-tDSkaYhO49kMVuBtQvaj_Zjmxx5WlAKtKhetU3lE0bFTTVuEY2QIa3j9OwHBgIlsiWoofCo6iawDmBTtjkLtUe6PBNiOpcR0-g5_P6da82s8MC8F76kW-tLqtzGZx-TX06NAqdu-Ge_3pHqpEwgeK4Ix4zOXu5xOZU5u9ll3I-FWKOWfLXGc2b0Dk9Wu7IK5ZwIWHiJ0hxQEqh_I_DY_6La1hSH6KQ');">
+                    </div>
+                </div>
+                <div class="flex flex-1 flex-col justify-center min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-primary">Food &amp;
+                            Drink</span>
+                    </div>
+                    <h3 class="truncate text-base font-bold text-slate-900 dark:text-white leading-tight">Pizzería Roma
+                    </h3>
+                    <div class="mt-1 flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                        <span class="material-symbols-outlined text-sm text-primary filled-icon">call</span>
+                        <p class="text-xs font-medium">+39 06 123 4567</p>
+                    </div>
+                </div>
+                <button class="flex h-10 w-10 items-center justify-center text-slate-300 dark:text-slate-600">
+                    <span class="material-symbols-outlined text-2xl">chevron_right</span>
+                </button>
+            </div>
+            <div
+                class="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+                <div class="h-20 w-20 shrink-0 overflow-hidden rounded-xl">
+                    <div class="h-full w-full bg-cover bg-center"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNQN7xI6NxBMzSTAs6YCrhzSlA-3hIqi9chgDHEGqf400uZ34g6VtDWTBeaS3UbLHYH_vTdJZn-9rbTDjHgUMhUS0JRspSnyRE4Ngxse63k3P76YXGFpG1VuTrxH8AEekHoMFc6z-JKdxK2mQ1uaGblsgO5GXZkq2WcACetHeRqsbDB1RXlRek5Jk-jUagJXoMFw_4135vIs3aQ-HJHZ70TYL01GY-lLQaKHqEp2Iy0ikJ8W2HPCyRJnHxW9aAkYAhJl2VvGls4f72');">
+                    </div>
+                </div>
+                <div class="flex flex-1 flex-col justify-center min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-primary">Fashion</span>
+                    </div>
+                    <h3 class="truncate text-base font-bold text-slate-900 dark:text-white leading-tight">Urban Style
+                        Boutique</h3>
+                    <div class="mt-1 flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                        <span class="material-symbols-outlined text-sm text-primary filled-icon">call</span>
+                        <p class="text-xs font-medium">+39 06 987 6543</p>
+                    </div>
+                </div>
+                <button class="flex h-10 w-10 items-center justify-center text-slate-300 dark:text-slate-600">
+                    <span class="material-symbols-outlined text-2xl">chevron_right</span>
+                </button>
+            </div>
+            <div
+                class="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+                <div class="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-700">
+                    <div class="h-full w-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-slate-300">store</span>
+                    </div>
+                </div>
+                <div class="flex flex-1 flex-col justify-center min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-primary">Wellness</span>
+                    </div>
+                    <h3 class="truncate text-base font-bold text-slate-900 dark:text-white leading-tight">Green Spa
+                        Retreat</h3>
+                    <div class="mt-1 flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                        <span class="material-symbols-outlined text-sm text-primary filled-icon">call</span>
+                        <p class="text-xs font-medium">+39 06 444 2222</p>
+                    </div>
+                </div>
+                <button class="flex h-10 w-10 items-center justify-center text-slate-300 dark:text-slate-600">
+                    <span class="material-symbols-outlined text-2xl">chevron_right</span>
+                </button>
+            </div>
+            <div
+                class="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+                <div class="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-700">
+                    <div class="h-full w-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-slate-300">fitness_center</span>
+                    </div>
+                </div>
+                <div class="flex flex-1 flex-col justify-center min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-primary">Sports</span>
+                    </div>
+                    <h3 class="truncate text-base font-bold text-slate-900 dark:text-white leading-tight">FitLife Studio
+                    </h3>
+                    <div class="mt-1 flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                        <span class="material-symbols-outlined text-sm text-primary filled-icon">call</span>
+                        <p class="text-xs font-medium">+39 06 555 7777</p>
+                    </div>
+                </div>
+                <div class="pr-2">
+                    <button class="text-xs font-bold text-primary uppercase">Ver Negocio</button>
+                </div>
+            </div>
+            <div class="h-24"></div>
+        </main>
+        <div id="bottom-nav-container"></div>
+        <!-- Not module (async defer) to support file:// protocol -->
+        <script src="../components/js/bottom_navigation.js"></script>
+        <script>
+            // Wait for script to load then run
+            window.addEventListener('load', function () {
+                if (typeof loadBottomNav === 'function') {
+                    loadBottomNav("favorites");
+                } else {
+                    console.error("loadBottomNav function not found. Check path to script.");
+                }
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>

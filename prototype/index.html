@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CUPONEA Welcome Screen</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(to bottom, rgba(16, 34, 22, 0.4) 0%, rgba(16, 34, 22, 0.85) 100%);
+        }
+    </style>
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark overflow-hidden">
+    <div class="relative flex h-screen w-full flex-col overflow-hidden font-display">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <div class="h-full w-full bg-cover bg-center" data-alt="People enjoying food at a local market outdoors"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7YDL9rlKMQFN0bu6P_P1IarJxHx7NCjr4MzQae4IeQqdZtgbFBwivRSQgtKvGizZ48WpFUaA9Rjh4nNlFzOyYxzXKYnzLXfNdWu1CCLw3Mvn_OZCOkPlRuhPWLKPn2xkuEIKP0tT7v9U_HARMxU-7CgbZ7V2Yf0kqsTNKYpPgaFVZVSoPZi4HJkzKEY9JnSamgd7zV_hQPq7g3wiHXRZ25aOJqDAToqSy3IWRLQcW6_v2L46YecUH8moUyI_D0a36KeRAcu1IQKZq');">
+            </div>
+            <div class="absolute inset-0 gradient-overlay"></div>
+        </div>
+        <!-- Content Container -->
+        <div class="relative z-10 flex h-full flex-col justify-between px-6 pb-12 pt-16 max-w-md mx-auto w-full">
+            <!-- Logo Section -->
+            <div class="flex justify-center">
+                <div class="glass-effect rounded-full px-8 py-4 flex items-center gap-3 shadow-2xl">
+                    <div
+                        class="bg-primary flex size-10 shrink-0 items-center justify-center rounded-full text-background-dark shadow-[0_0_15px_rgba(19,236,91,0.5)]">
+                        <span class="material-symbols-outlined text-2xl font-bold">local_activity</span>
+                    </div>
+                    <h2 class="text-white text-2xl font-extrabold tracking-tighter">CUPONEA</h2>
+                </div>
+            </div>
+            <!-- Text Content Section -->
+            <div class="flex flex-col items-center text-center space-y-4">
+                <h1 class="text-white text-4xl font-extrabold leading-[1.1] tracking-tight drop-shadow-md">
+                    Ahorra mientras apoyas lo local
+                </h1>
+                <p class="text-white/90 text-lg font-medium leading-relaxed max-w-[300px] drop-shadow-sm">
+                    Encuentra los mejores cupones y promociones cerca de ti
+                </p>
+            </div>
+            <!-- Action Buttons Section -->
+            <div class="flex flex-col gap-4 w-full max-w-md mx-auto">
+                <button onclick="window.location.href='auth/singUp.html'"
+                    class="flex items-center justify-center rounded-full h-16 bg-primary text-background-dark text-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-transform">
+                    <span class="truncate">Registrarse</span>
+                </button>
+                <button onclick="window.location.href='auth/singIn.html'"
+                    class="flex items-center justify-center rounded-full h-16 glass-effect text-white text-lg font-bold hover:bg-white/20 active:scale-[0.98] transition-all">
+                    <span class="truncate text-white">Iniciar sesión</span>
+                </button>
+                <!-- Bottom Indicator Style (iOS) -->
+                <div class="mt-4 flex flex-col items-center">
+                    <div class="flex items-center gap-2 text-white/60 text-sm">
+                        <span class="material-symbols-outlined text-sm">location_on</span>
+                        <span>Descubre ofertas en tu ciudad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Safe area background elements -->
+        <div
+            class="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-black/20 to-transparent pointer-events-none">
+        </div>
+    </div>
+</body>
+
+</html>

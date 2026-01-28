@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pizzería Roma - Detalle</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-50 dark:bg-black min-h-screen text-[#111813] dark:text-white">
+    <div class="w-full max-w-md mx-auto bg-background-light dark:bg-background-dark min-h-screen shadow-2xl relative">
+        <!-- Top Navigation Bar -->
+        <div
+            class="fixed top-0 w-full max-w-md mx-auto left-0 right-0 z-50 flex items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-gray-100 dark:border-white/10">
+            <div class="text-[#111813] dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-white/10 shadow-sm cursor-pointer"
+                data-icon="arrow_back">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </div>
+            <div class="flex gap-2">
+                <button
+                    class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-white dark:bg-white/10 shadow-sm text-[#111813] dark:text-white">
+                    <span class="material-symbols-outlined" data-icon="share">share</span>
+                </button>
+            </div>
+        </div>
+        <!-- Hero Image Section -->
+        <div class="pt-0">
+            <div class="@container">
+                <div class="@[480px]:px-4 @[480px]:pt-4">
+                    <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-white @[480px]:rounded-xl min-h-[350px] relative"
+                        data-alt="Interior acogedor de una pizzería italiana con horno de leña"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChO1H4sQ0vm4i5Zqed1oshL7cYisSi-6FywGIYiPIZNGlg4hkzU0SI-hqZRScHLoKgfU52TjJpve1_oY_dsub1XNtNxxSsRetdQoI9LaVL2X7i37FJcF8f71RlvmvGjqCXZ4I_kh5VYemNG2IVn-06QiCTfSrSetWslmXfo0xanT8qSO4Di1psp-xl2rnrR9x1a2nY0bPMeL-p3OOT49nfwweu-71Rau9AhjrwcgTdCnzOzKFtv-6UTCZALhICuXoJp5WRoaAYXaQr");'>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Business Info Section -->
+        <div class="relative -mt-8 px-4">
+            <div class="bg-white dark:bg-[#1a2e1e] rounded-xl p-5 shadow-lg border border-gray-50 dark:border-white/5">
+                <div class="flex flex-col gap-4">
+                    <div class="flex justify-between items-start">
+                        <div class="flex flex-col">
+                            <h1 class="text-[#111813] dark:text-white text-2xl font-bold leading-tight tracking-tight">
+                                Pizzería Roma</h1>
+                            <p
+                                class="text-[#61896f] dark:text-gray-400 text-sm font-medium mt-1 flex items-center gap-1">
+                                Italian • Pizza •
+                                <span class="flex items-center text-amber-500">
+                                    <span class="material-symbols-outlined text-sm">star</span> 4.8
+                                </span>
+                            </p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                                <p class="text-[#61896f] dark:text-gray-400 text-sm font-normal">Abierto ahora • 1.2 km
+                                    de
+                                    distancia</p>
+                            </div>
+                        </div>
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg h-16 w-16 border-2 border-white dark:border-gray-800 shadow-md"
+                            data-alt="Logo circular de Pizzería Roma con bandera italiana"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuApB2MxD0zcwuOZrnhYE6_8wPfdvESmsm2zpeZ74-TJtFjrVAJtA3--D_nGGTHLbZ-U917R6R0kvC5x1a_VG33iq3eX-LYlRDr_Hj0qgd-8OJozJJhUawgWzkXbQKZhJQJx271aeetry5BW3yGo1NDoKc-5PMkwhym3y7Mm3tsjLWHMZcsH9YGXHoyl6iOCqoIB-tOXYs8Qr4j5IcXmWRRuUfjEv_mnpbK9Sj_Phg9vwLbu49WryGsaOoHozfJ9hd8WS0J9hZYme2Mc");'>
+                        </div>
+                    </div>
+                    <!-- Action Buttons -->
+                    <div class="flex w-full gap-3">
+                        <button
+                            class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 rounded-xl h-12 px-4 bg-[#f0f4f2] dark:bg-white/10 text-[#111813] dark:text-white text-sm font-bold leading-normal transition-all active:scale-95 flex-1">
+                            <span class="material-symbols-outlined text-xl">favorite</span>
+                            <span class="truncate">Favorito</span>
+                        </button>
+                        <button
+                            class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 rounded-xl h-12 px-4 bg-primary text-[#111813] text-sm font-bold leading-normal transition-all active:scale-95 flex-1 shadow-md shadow-primary/20">
+                            <span class="material-symbols-outlined text-xl">chat</span>
+                            <span class="truncate">WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Coupons Section -->
+        <div class="mt-6 pb-20">
+            <div class="flex items-center justify-between px-4 mb-2">
+                <h2 class="text-[#111813] dark:text-white text-xl font-bold leading-tight tracking-tight">Cupones
+                    disponibles</h2>
+                <span class="bg-primary/20 text-primary px-2 py-1 rounded-md text-xs font-bold">2 Activos</span>
+            </div>
+            <!-- Coupon Card 1 -->
+            <div class="p-4 pt-2">
+                <div
+                    class="flex flex-col items-stretch justify-start rounded-xl shadow-sm border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1a2e1e] overflow-hidden">
+                    <div class="relative h-40 w-full">
+                        <div class="w-full h-full bg-center bg-no-repeat bg-cover"
+                            data-alt="Pizza margarita recién horneada con albahaca"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAdgpRDh5qhEz8PGd5tTLa-f0v5gjFIdMNaK5KApRbgkTKcpWdE5V__on6X2GnE1yeZrRmt7Th9Z08j9j0VYtbemnXmKrRbEo045VbQHyvQA6knV1tH4P4S173SBcTxgcsIkSkyBEsepiHkjqZpkl18Qe4Vjf4_whsJjLZqLgFZAw_6rhBs3PR7z6wTXcX_TzZtS_ulZpWsE3HG5i2O5dTE6Jd5wgRpeo9ZcQlMoZmB6eNmb0-Celbsio5pKar4OkjZqoIwZkow5T77");'>
+                        </div>
+                        <div
+                            class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs">timer</span>
+                            02:45:12
+                        </div>
+                    </div>
+                    <div class="flex w-full grow flex-col items-stretch justify-center gap-3 p-4">
+                        <div class="flex justify-between items-start gap-2">
+                            <div>
+                                <p class="text-[#111813] dark:text-white text-lg font-bold leading-tight">2x1 en
+                                    Margaritas
+                                </p>
+                                <p class="text-[#61896f] dark:text-gray-400 text-sm font-normal mt-1 italic">Válido para
+                                    comer aquí y para llevar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-1">
+                            <div class="flex items-center gap-1.5">
+                                <span class="flex h-1.5 w-1.5 rounded-full bg-orange-500"></span>
+                                <p class="text-orange-500 text-sm font-bold">Quedan 5</p>
+                            </div>
+                            <button
+                                class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-[#111813] text-sm font-bold transition-all active:scale-95">
+                                <span class="truncate">Ver Cupón</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Coupon Card 2 -->
+            <div class="p-4 pt-0">
+                <div
+                    class="flex flex-col items-stretch justify-start rounded-xl shadow-sm border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1a2e1e] overflow-hidden opacity-90">
+                    <div class="relative h-40 w-full">
+                        <div class="w-full h-full bg-center bg-no-repeat bg-cover"
+                            data-alt="Cerveza artesanal fría en un vaso"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkjnpJzWeSxTZ9AvN3i3xicUs0VVG6aUp98SMX_-BBSgFDUm9sbx3xo96K85Z8e8LrPm4XHA2IIS0v8vYlZGUwTwrvPf2UHzttbUUdmTRV2zi2AjnTw0TSgTOR7mwN6VHdQzBnUo-hnD8V2KKGP0y-SHLR7CncYTR7TbW3Q-RXgOGGz8Oly2F7szLt0cY2lnh7UHSaEylclj2ttrepsD-3pi1Fyr0wlc-66nkydyUcv6rKteUcskVgX1Zj7XVbyOUmAfxOAAn_YqRh");'>
+                        </div>
+                        <div
+                            class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+                            ¡Limitado!
+                        </div>
+                    </div>
+                    <div class="flex w-full grow flex-col items-stretch justify-center gap-3 p-4">
+                        <div class="flex justify-between items-start gap-2">
+                            <div>
+                                <p class="text-[#111813] dark:text-white text-lg font-bold leading-tight">15% Off Total
+                                    Bill
+                                </p>
+                                <p class="text-[#61896f] dark:text-gray-400 text-sm font-normal mt-1 italic">Consumo
+                                    mínimo
+                                    20€</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-1">
+                            <div class="flex items-center gap-1.5">
+                                <span class="flex h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                                <p class="text-red-500 text-sm font-bold">Quedan 2</p>
+                            </div>
+                            <button
+                                class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-[#111813] text-sm font-bold transition-all active:scale-95">
+                                <span class="truncate">Ver Cupón</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Location Preview (Small) -->
+            <div class="px-4 mt-4">
+                <div
+                    class="flex flex-col gap-2 p-4 bg-white dark:bg-[#1a2e1e] rounded-xl border border-gray-100 dark:border-white/5">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">location_on</span>
+                        <p class="text-sm font-medium dark:text-white">Via di Ripetta, 14, 00186 Roma RM, Italia</p>
+                    </div>
+                    <div class="w-full h-32 rounded-lg overflow-hidden bg-gray-100 mt-2">
+                        <div class="w-full h-full bg-center bg-cover" data-location="Roma, Italia"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDNQN7xI6NxBMzSTAs6YCrhzSlA-3hIqi9chgDHEGqf400uZ34g6VtDWTBeaS3UbLHYH_vTdJZn-9rbTDjHgUMhUS0JRspSnyRE4Ngxse63k3P76YXGFpG1VuTrxH8AEekHoMFc6z-JKdxK2mQ1uaGblsgO5GXZkq2WcACetHeRqsbDB1RXlRek5Jk-jUagJXoMFw_4135vIs3aQ-HJHZ70TYL01GY-lLQaKHqEp2Iy0ikJ8W2HPCyRJnHxW9aAkYAhJl2VvGls4f72");'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Spacing for iOS Home Indicator -->
+        <div class="h-10 bg-transparent"></div>
+    </div>
+</body>
+
+</html>

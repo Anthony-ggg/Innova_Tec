@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Perfil de Usuario - Local Savings</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#111813] dark:text-white transition-colors duration-300">
+    <!-- Screen Container (iOS Form Factor Simulation) -->
+    <div
+        class="w-full max-w-4xl mx-auto min-h-screen shadow-2xl relative overflow-hidden flex flex-col bg-background-light dark:bg-background-dark">
+        <!-- TopAppBar with Settings Gear -->
+        <div
+            class="sticky top-0 z-10 flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between border-b border-gray-200 dark:border-gray-800">
+            <h2 class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1">Perfil
+            </h2>
+            <div class="flex items-center justify-end">
+                <button
+                    class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white dark:bg-zinc-800 shadow-sm text-[#111813] dark:text-white">
+                    <span class="material-symbols-outlined">settings</span>
+                </button>
+            </div>
+        </div>
+        <!-- Profile Header Section -->
+        <div class="flex p-4 mt-4 @container">
+            <div class="flex w-full flex-col gap-4 items-center">
+                <div class="flex gap-4 flex-col items-center">
+                    <div class="relative">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-primary/20 shadow-lg"
+                            data-alt="User profile portrait smiling friendly face"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDa7fW5ppuwJ-9OuzFdetqnBURg7M475Q6R2cTipJg1Ch-pIpP13YN98j6kyhFW2rIJAPVpKTV2Vg8j5j8LXT7lhEK2MQnx5oOndJe5zutE9qIer63y3ePz7E9bx-ywx56lqRTFoEHA98rncAMAbfUj7R0aIVdx1BH34AgzWkAFIhnqpwBk_jQj_9cT0Mu3Ge5_80kRYlV43DoSBnk_3hWZYkqo0CN_BXqtwzvBfE1u04Cikt41OHJ915tpyG_Pgi-vsiDf16s542yg");'>
+                        </div>
+                        <div
+                            class="absolute bottom-1 right-1 bg-primary rounded-full p-1.5 border-4 border-white dark:border-background-dark">
+                            <span class="material-symbols-outlined text-[16px] text-white font-bold">verified</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                        <p
+                            class="text-[#111813] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] text-center">
+                            Hola, Alejandro</p>
+                        <p class="text-[#61896f] dark:text-primary/70 text-base font-medium leading-normal text-center">
+                            Miembro desde 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Stats Section (Impact Dashboard) -->
+        <div class="px-4 py-2">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div
+                    class="flex min-w-[150px] flex-1 flex-col gap-2 rounded-xl p-5 bg-white dark:bg-zinc-800 shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-xl">confirmation_number</span>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm font-medium leading-normal">Cupones usados
+                        </p>
+                    </div>
+                    <p class="text-[#111813] dark:text-white tracking-tight text-3xl font-bold leading-tight">12</p>
+                </div>
+                <div
+                    class="flex min-w-[150px] flex-1 flex-col gap-2 rounded-xl p-5 bg-primary/10 dark:bg-primary/5 border border-primary/20 shadow-sm">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-xl">savings</span>
+                        <p class="text-[#111813] dark:text-primary/90 text-sm font-medium leading-normal">Ahorro total
+                        </p>
+                    </div>
+                    <p class="text-[#111813] dark:text-white tracking-tight text-3xl font-bold leading-tight">$45.00</p>
+                </div>
+            </div>
+        </div>
+        <!-- Categorías de interés -->
+        <div class="mt-4">
+            <h3
+                class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
+                Categorías de interés</h3>
+            <div class="flex gap-2 p-4 flex-wrap">
+                <div
+                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-primary text-white pl-4 pr-4 shadow-md shadow-primary/20">
+                    <span class="material-symbols-outlined text-[18px]">restaurant</span>
+                    <p class="text-sm font-semibold leading-normal">Comida</p>
+                </div>
+                <div
+                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-white dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 pl-4 pr-4">
+                    <span class="material-symbols-outlined text-[18px] text-gray-500">checkroom</span>
+                    <p class="text-[#111813] dark:text-gray-300 text-sm font-medium leading-normal">Ropa</p>
+                </div>
+                <div
+                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-white dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 pl-4 pr-4">
+                    <span class="material-symbols-outlined text-[18px] text-gray-500">handyman</span>
+                    <p class="text-[#111813] dark:text-gray-300 text-sm font-medium leading-normal">Servicios</p>
+                </div>
+                <div
+                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-primary text-white pl-4 pr-4 shadow-md shadow-primary/20">
+                    <span class="material-symbols-outlined text-[18px]">devices</span>
+                    <p class="text-sm font-semibold leading-normal">Tecnología</p>
+                </div>
+                <div
+                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-white dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 pl-4 pr-4">
+                    <span class="material-symbols-outlined text-[18px] text-gray-500">home</span>
+                    <p class="text-[#111813] dark:text-gray-300 text-sm font-medium leading-normal">Hogar</p>
+                </div>
+            </div>
+        </div>
+        <!-- History/Activity Section -->
+        <div class="flex-grow mt-2">
+            <h3
+                class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
+                Actividad reciente</h3>
+            <div class="px-4 flex flex-col gap-3">
+                <div
+                    class="flex items-center justify-between p-4 bg-white dark:bg-zinc-800 rounded-lg border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-gray-500">local_pizza</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm text-[#111813] dark:text-white">Pizza Local Co.</p>
+                            <p class="text-xs text-gray-500">Ayer • Cupón 2x1</p>
+                        </div>
+                    </div>
+                    <p class="text-primary font-bold text-sm">-$12.50</p>
+                </div>
+                <div
+                    class="flex items-center justify-between p-4 bg-white dark:bg-zinc-800 rounded-lg border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-gray-500">shopping_bag</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm text-[#111813] dark:text-white">Boutique Urbana</p>
+                            <p class="text-xs text-gray-500">15 Oct • 15% Desc.</p>
+                        </div>
+                    </div>
+                    <p class="text-primary font-bold text-sm">-$8.00</p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer / Navigation Bar Placeholder -->
+        <div id="bottom-nav-container"></div>
+
+    </div>
+    <!-- Componentes -->
+    <script src="../components/js/bottom_navigation.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            if (typeof loadBottomNav === 'function') {
+                loadBottomNav("profile");
+            }
+        });
+    </script>
+</body>
+
+</html>

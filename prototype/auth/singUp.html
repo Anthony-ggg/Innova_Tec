@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Registro - CUPONEA</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "primary-dark": "#1ea34d",
+                        "background-light": "#f8faf9",
+                        "background-dark": "#0c1a12",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1.25rem",
+                        "xl": "1.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-background-light dark:bg-background-dark font-display text-[#111813] dark:text-white transition-colors duration-300;
+                min-height: 100dvh;
+            }
+        }
+        .soft-gradient {
+            background: radial-gradient(circle at top right, rgba(43, 238, 108, 0.08), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(43, 238, 108, 0.05), transparent 40%);
+        }
+        .button-gradient {
+            background: linear-gradient(135deg, #2bee6c 0%, #1ea34d 100%);
+        }
+        .input-shadow {
+            box-shadow: 0 2px 8px -2px rgba(0,0,0,0.05);
+        }
+        .input-shadow:focus-within {
+            box-shadow: 0 4px 12px -2px rgba(43, 238, 108, 0.15);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="soft-gradient">
+    <div
+        class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-white/80 dark:bg-[#102216]/90 backdrop-blur-sm shadow-2xl">
+        <div
+            class="flex items-center px-4 pt-6 pb-2 justify-between sticky top-0 z-10 bg-white/60 dark:bg-[#102216]/60 backdrop-blur-md">
+            <div
+                class="text-[#111813] dark:text-white flex size-10 items-center justify-center cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors">
+                <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+            </div>
+            <div class="flex-1"></div>
+        </div>
+        <div class="px-6 pt-2 pb-6 flex flex-col items-center">
+            <div
+                class="w-full h-44 rounded-2xl bg-primary/10 flex items-center justify-center overflow-hidden relative mb-6">
+                <div
+                    class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent">
+                </div>
+                <div class="flex items-center gap-4 z-0">
+                    <span class="material-symbols-outlined text-[80px] text-primary/40 select-none">storefront</span>
+                    <span class="material-symbols-outlined text-[100px] text-primary/60 select-none">groups</span>
+                    <span class="material-symbols-outlined text-[80px] text-primary/40 select-none">local_mall</span>
+                </div>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1">
+                    <div class="h-1.5 w-6 rounded-full bg-primary"></div>
+                    <div class="h-1.5 w-1.5 rounded-full bg-primary/30"></div>
+                    <div class="h-1.5 w-1.5 rounded-full bg-primary/30"></div>
+                </div>
+            </div>
+            <div class="text-center w-full">
+                <h1 class="text-[#111813] dark:text-white text-[32px] font-extrabold leading-tight tracking-tight">
+                    Únete a <span class="text-primary-dark dark:text-primary">CUPONEA</span>
+                </h1>
+                <p class="text-[#61896f] dark:text-primary/70 text-base font-medium mt-2">Empieza a ahorrar en tu barrio
+                    hoy.</p>
+            </div>
+        </div>
+        <div class="flex flex-col gap-5 px-6 pb-6">
+            <div class="flex flex-col gap-2">
+                <label class="text-[#111813] dark:text-white text-sm font-bold ml-1">Nombre Completo</label>
+                <div
+                    class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
+                    <span class="material-symbols-outlined absolute left-4 text-[#61896f]">person</span>
+                    <input
+                        class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-12 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
+                        placeholder="Juan Pérez" type="text" value="Juan Pérez" />
+                    <div class="absolute right-4 text-primary flex items-center">
+                        <span class="material-symbols-outlined text-[20px] fill-1">check_circle</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2">
+                <label class="text-[#111813] dark:text-white text-sm font-bold ml-1">Correo Electrónico</label>
+                <div
+                    class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
+                    <span class="material-symbols-outlined absolute left-4 text-[#61896f]">mail</span>
+                    <input
+                        class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-4 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
+                        placeholder="hola@ejemplo.com" type="email" />
+                </div>
+            </div>
+            <div class="flex flex-col gap-2">
+                <label class="text-[#111813] dark:text-white text-sm font-bold ml-1">Contraseña</label>
+                <div
+                    class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
+                    <span class="material-symbols-outlined absolute left-4 text-[#61896f]">lock</span>
+                    <input
+                        class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-12 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
+                        placeholder="••••••••" type="password" />
+                    <div class="absolute right-4 text-[#61896f] cursor-pointer hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined">visibility</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2">
+                <label class="text-[#111813] dark:text-white text-sm font-bold ml-1">Confirmar Contraseña</label>
+                <div
+                    class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
+                    <span class="material-symbols-outlined absolute left-4 text-[#61896f]">lock_reset</span>
+                    <input
+                        class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-4 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
+                        placeholder="••••••••" type="password" />
+                </div>
+            </div>
+            <div class="py-1">
+                <label class="flex items-start gap-3 cursor-pointer group">
+                    <div class="relative flex items-center pt-0.5">
+                        <input
+                            class="w-5 h-5 rounded-lg border-[#dbe6df] dark:border-[#2a3d31] text-primary focus:ring-primary/40 dark:bg-[#1a2e21] cursor-pointer"
+                            type="checkbox" />
+                    </div>
+                    <span class="text-sm text-[#111813] dark:text-white leading-tight font-medium">
+                        Acepto los <span class="text-primary-dark dark:text-primary font-bold hover:underline">términos
+                            y condiciones</span> y la política de privacidad.
+                    </span>
+                </label>
+            </div>
+            <div class="pt-2">
+                <button
+                    class="w-full h-15 button-gradient text-[#102216] font-extrabold text-lg rounded-2xl shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.97] transition-all py-4">
+                    Crear Cuenta
+                </button>
+            </div>
+            <div class="flex items-center gap-4 py-2">
+                <div
+                    class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#dbe6df] dark:via-[#2a3d31] to-transparent">
+                </div>
+                <span class="text-[#61896f] text-xs font-bold uppercase tracking-widest">O continúa con</span>
+                <div
+                    class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#dbe6df] dark:via-[#2a3d31] to-transparent">
+                </div>
+            </div>
+            <button
+                class="w-full h-14 bg-white dark:bg-[#1a2e21] border border-[#dbe6df] dark:border-[#2a3d31] rounded-2xl flex items-center justify-center gap-3 hover:bg-[#f9faf9] dark:hover:bg-[#253a2d] transition-all input-shadow">
+                <img alt="Google" class="w-6 h-6"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXbFMZ6x8tsKJgTlyXqPcX-N1GGwNVrDQq6r6ZSB1p6NhyzQw3GbXASwDU_C4JSr_6_S9N9fpB9XF-x6CyTxhOA4kow6NeCRDytLjScAPYHmHVL8-QyVYs6A3WsmipdBj7MtkFSFWTDPAIq5XoDJ8NNlAhBOrp8SoD80oIssZ4LmG_bKS0fCTJCqwIDyDzZsigekcDEneXhjfFJPxVuWCPP3vgt7LCDpx1JeLNn8tbAmNWi4uY2AfDWNMEfZJ8PZff-K2il38yD2rU" />
+                <span class="text-[#111813] dark:text-white font-bold">Google</span>
+            </button>
+            <div class="pt-4 pb-8 text-center">
+                <p class="text-[#61896f] text-sm font-medium">
+                    ¿Ya tienes una cuenta? <a
+                        class="text-primary-dark dark:text-primary font-bold hover:underline underline-offset-4"
+                        href="#">Inicia sesión</a>
+                </p>
+            </div>
+        </div>
+        <div class="h-8"></div>
+    </div>
+
+</body>
+
+</html>

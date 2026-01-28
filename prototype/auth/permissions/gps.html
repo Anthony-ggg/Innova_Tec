@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <title>CUPONEA - Onboarding</title>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#111813] dark:text-white transition-colors duration-300">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Main Onboarding Container -->
+        <main class="flex flex-col flex-1 max-w-[480px] mx-auto w-full">
+            <!-- Header Image / Illustration Section -->
+            <div class="@container pt-6">
+                <div class="px-4 py-3">
+                    <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-white dark:bg-zinc-900 rounded-xl min-h-[340px] shadow-sm"
+                        data-alt="Person discovering local shops on a mobile map illustration"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBiCqksx-qMglXQCKfg7l67VRA_Po41q_k7jF2FX2TRMNKvQpywK2_xOajeZiIEQangonlDOcmeu3sRQC0tQIFfbnNsU1lUxqt5JAa_WQbMphVUhBuO15-tfNzkXQcQvNPKV17Bcw2aTMKE4Vg2VBOVX2XfSREmBvqUOje3NQW2YTgOsXG4rhBTF00W0NlDlEo3_JeKJEWK0V4R1DjFNUnaKNNrdA0_cvwUtH6MZLyqy9BVGfEpU7GMNvBJQ7iw8ltmSFgHPPQb2wOD");'>
+                        <!-- Overlay Gradient for legibility if text was on top -->
+                        <div class="h-1/3 w-full bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Headline Section -->
+            <div class="px-6 flex flex-col gap-2 pt-6">
+                <h1
+                    class="text-[#111813] dark:text-white tracking-tight text-[32px] font-bold leading-tight text-center">
+                    Descubre negocios cerca de ti
+                </h1>
+                <p class="text-[#4B5563] dark:text-zinc-400 text-lg font-normal leading-relaxed text-center px-2">
+                    Apoya el comercio de tu ciudad y ahorra con ofertas exclusivas.
+                </p>
+            </div>
+            <!-- Spacer -->
+            <div class="flex-grow min-h-[20px]"></div>
+            <!-- Permission Context / Action Panel -->
+            <div class="p-4 @container">
+                <div
+                    class="flex flex-1 flex-col items-start justify-between gap-4 rounded-xl border border-[#dbe6df] dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 @[480px]:flex-row @[480px]:items-center shadow-sm">
+                    <div class="flex flex-col gap-1">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+                            <p class="text-[#111813] dark:text-white text-base font-bold leading-tight">¿Por qué la
+                                ubicación?</p>
+                        </div>
+                        <p class="text-[#61896f] dark:text-zinc-400 text-sm font-normal leading-normal mt-1">
+                            Usamos el GPS para encontrar los mejores cupones y descuentos en las tiendas que tienes a
+                            solo unos pasos de distancia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Action Buttons Footer -->
+            <div class="flex flex-col gap-3 px-4 pb-4">
+                <button
+                    class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-4 bg-primary text-[#102216] text-base font-bold leading-normal hover:opacity-90 active:scale-[0.98] transition-all shadow-md">
+                    <span class="truncate">Permitir ubicación</span>
+                </button>
+                <button
+                    class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 bg-transparent text-[#61896f] dark:text-zinc-400 text-sm font-medium leading-normal">
+                    <span class="truncate">Omitir por ahora</span>
+                </button>
+            </div>
+            <!-- Page Indicators -->
+            <div class="flex w-full flex-row items-center justify-center gap-2.5 py-6">
+                <div class="h-2 w-6 rounded-full bg-primary"></div>
+                <div class="h-2 w-2 rounded-full bg-[#dbe6df] dark:bg-zinc-700"></div>
+                <div class="h-2 w-2 rounded-full bg-[#dbe6df] dark:bg-zinc-700"></div>
+            </div>
+            <!-- Bottom Home Indicator Area (iOS Style) -->
+            <div class="h-2 w-full bg-transparent"></div>
+        </main>
+    </div>
+    <!-- Hidden Map Data Tag as per instructions -->
+    <div class="hidden" data-location="Madrid, Spain" style=""></div>
+</body>
+
+</html>

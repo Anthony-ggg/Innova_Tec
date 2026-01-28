@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Alerts &amp; Notifications Center</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display transition-colors duration-300">
+    <div
+        class="w-full max-w-3xl mx-auto bg-white dark:bg-zinc-900 min-h-screen shadow-xl flex flex-col relative overflow-hidden">
+        <!-- TopAppBar -->
+        <header
+            class="sticky top-0 z-20 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800">
+            <div class="flex items-center p-4 pb-3 justify-between">
+                <h1 class="text-[#111813] dark:text-white text-xl font-bold leading-tight tracking-tight">Notificaciones
+                </h1>
+                <button
+                    class="text-primary text-sm font-bold leading-normal tracking-wide hover:opacity-80 transition-opacity">
+                    Marcar como leídas
+                </button>
+            </div>
+        </header>
+        <main class="flex-1 pb-24">
+            <!-- Section: Hoy -->
+            <section>
+                <div class="flex items-center px-4 pb-2 pt-6">
+                    <h3 class="text-[#111813] dark:text-zinc-200 text-lg font-bold leading-tight tracking-tight">Hoy
+                    </h3>
+                </div>
+                <!-- ListItem: Nuevo Cupón (Pizzería Roma) -->
+                <div
+                    class="group relative flex gap-4 bg-white dark:bg-zinc-900 px-4 py-4 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors border-b border-zinc-50 dark:border-zinc-800">
+                    <div class="flex items-start gap-4 flex-1">
+                        <div
+                            class="text-primary flex items-center justify-center rounded-xl bg-primary/10 shrink-0 size-12">
+                            <span class="material-symbols-outlined text-2xl">local_offer</span>
+                        </div>
+                        <div class="flex flex-1 flex-col justify-center">
+                            <div class="flex items-center gap-2 mb-0.5">
+                                <p class="text-[#111813] dark:text-white text-base font-bold leading-normal">¡Nuevo
+                                    Cupón!</p>
+                                <span
+                                    class="bg-primary/20 text-[#078829] dark:text-primary text-[10px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">Ahorro</span>
+                            </div>
+                            <p class="text-zinc-500 dark:text-zinc-400 text-xs font-medium leading-normal mb-1">Hace 2
+                                min • Pizzería Roma</p>
+                            <p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-relaxed">Obtén 20% de
+                                descuento en tu próxima pizza familiar.</p>
+                        </div>
+                    </div>
+                    <div class="shrink-0 pt-1">
+                        <div class="flex size-7 items-center justify-center">
+                            <div class="size-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(19,236,91,0.6)]"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ListItem: Negocio Verificado (Blue Alert) -->
+                <div
+                    class="group relative flex gap-4 bg-white dark:bg-zinc-900 px-4 py-4 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors border-b border-zinc-50 dark:border-zinc-800">
+                    <div class="flex items-start gap-4 flex-1">
+                        <div
+                            class="text-blue-500 flex items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-900/20 shrink-0 size-12">
+                            <span class="material-symbols-outlined text-2xl">verified_user</span>
+                        </div>
+                        <div class="flex flex-1 flex-col justify-center">
+                            <p class="text-[#111813] dark:text-white text-base font-bold leading-normal mb-0.5">Negocio
+                                Verificado</p>
+                            <p class="text-zinc-500 dark:text-zinc-400 text-xs font-medium leading-normal mb-1">Hace 1h
+                            </p>
+                            <p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-relaxed">Tu perfil de
+                                negocio ha sido validado exitosamente. Ahora eres un comercio certificado.</p>
+                        </div>
+                    </div>
+                    <!-- Read state (no dot) -->
+                    <div class="shrink-0 pt-1 w-7"></div>
+                </div>
+            </section>
+            <!-- Section: Esta semana -->
+            <section>
+                <div class="flex items-center px-4 pb-2 pt-8">
+                    <h3 class="text-[#111813] dark:text-zinc-200 text-lg font-bold leading-tight tracking-tight">Esta
+                        semana</h3>
+                </div>
+                <!-- ListItem: Oferta Relámpago -->
+                <div
+                    class="group relative flex gap-4 bg-white dark:bg-zinc-900 px-4 py-4 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors border-b border-zinc-50 dark:border-zinc-800">
+                    <div class="flex items-start gap-4 flex-1">
+                        <div
+                            class="text-amber-500 flex items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-900/20 shrink-0 size-12">
+                            <span class="material-symbols-outlined text-2xl">bolt</span>
+                        </div>
+                        <div class="flex flex-1 flex-col justify-center">
+                            <p class="text-[#111813] dark:text-white text-base font-bold leading-normal mb-0.5">Oferta
+                                Relámpago</p>
+                            <p class="text-zinc-500 dark:text-zinc-400 text-xs font-medium leading-normal mb-1">Ayer •
+                                Boutique Bella</p>
+                            <p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-relaxed">Solo por
+                                hoy: 2x1 en toda la colección de verano. ¡No te lo pierdas!</p>
+                        </div>
+                    </div>
+                    <div class="shrink-0 pt-1">
+                        <div class="flex size-7 items-center justify-center">
+                            <div class="size-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(19,236,91,0.6)]"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ListItem: App Update -->
+                <div
+                    class="group relative flex gap-4 bg-white dark:bg-zinc-900 px-4 py-4 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors border-b border-zinc-50 dark:border-zinc-800">
+                    <div class="flex items-start gap-4 flex-1">
+                        <div
+                            class="text-zinc-600 dark:text-zinc-300 flex items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 shrink-0 size-12">
+                            <span class="material-symbols-outlined text-2xl">update</span>
+                        </div>
+                        <div class="flex flex-1 flex-col justify-center">
+                            <p class="text-[#111813] dark:text-white text-base font-bold leading-normal mb-0.5">
+                                Actualización disponible</p>
+                            <p class="text-zinc-500 dark:text-zinc-400 text-xs font-medium leading-normal mb-1">Hace 3
+                                días</p>
+                            <p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-relaxed">Hemos
+                                mejorado la velocidad del mapa y corregido errores menores.</p>
+                        </div>
+                    </div>
+                    <div class="shrink-0 pt-1 w-7"></div>
+                </div>
+            </section>
+        </main>
+        <!-- Bottom Navigation -->
+        <div id="bottom-nav-container"></div>
+
+    </div>
+    <!-- Componentes -->
+    <!-- Not module (async defer) to support file:// protocol -->
+    <script src="../components/js/bottom_navigation.js"></script>
+    <script>
+        // Wait for script to load then run
+        window.addEventListener('load', function () {
+            if (typeof loadBottomNav === 'function') {
+                loadBottomNav("alerts");
+            } else {
+                console.error("loadBottomNav function not found. Check path to script.");
+            }
+        });
+    </script>
+</body>
+
+</html>

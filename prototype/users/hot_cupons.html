@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CUPONEA - Hot Deals</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#0a0f0b",
+                        "card-dark": "#121813",
+                    },
+                    fontFamily: {
+                        "sans": ["Plus Jakarta Sans", "sans-serif"],
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .glass-card {
+                @apply bg-[#121813]/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20;
+            }
+            .glass-badge {
+                @apply bg-white/5 backdrop-blur-md border border-white/10;
+            }
+            .premium-button {
+                @apply relative overflow-hidden transition-all duration-300 active:scale-[0.98] shadow-lg shadow-primary/20;
+                box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(19, 236, 91, 0.2);
+            }
+            .premium-button-red {
+                @apply relative overflow-hidden transition-all duration-300 active:scale-[0.98] shadow-lg shadow-red-500/20;
+                box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(239, 68, 68, 0.2);
+            }
+            .progress-bar-container {
+                @apply h-1.5 w-full bg-white/5 rounded-full overflow-hidden;
+            }
+            .pulse-red {
+                animation: pulse-red-border 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            @keyframes pulse-red-border {
+                0%, 100% { border-color: rgba(239, 68, 68, 0.2); }
+                50% { border-color: rgba(239, 68, 68, 0.8); }
+            }
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-50 dark:bg-black text-slate-900 dark:text-white min-h-screen">
+    <div
+        class="w-full max-w-7xl mx-auto bg-background-light dark:bg-background-dark min-h-screen shadow-2xl relative pb-32">
+        <div
+            class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/90 backdrop-blur-xl border-b border-white/5">
+            <div class="flex items-center px-5 py-4 justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="bg-primary/20 p-2 rounded-xl">
+                        <span class="material-symbols-outlined text-primary text-2xl"
+                            style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                    </div>
+                    <h1 class="text-black text-xl font-extrabold tracking-tight">Hot Deals (Ofertas del momento)</h1>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button
+                        class="flex size-11 items-center justify-center rounded-full bg-black/5 border border-black/10 text-black">
+                        <span class="material-symbols-outlined text-[22px]">search</span>
+                    </button>
+                    <button
+                        class="flex size-11 items-center justify-center rounded-full bg-black/5 border border-black/10 text-black relative">
+                        <span class="material-symbols-outlined text-[22px]">notifications</span>
+                        <span
+                            class="absolute top-2.5 right-2.5 size-2 bg-primary rounded-full ring-2 ring-background-dark"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="px-5 pt-6 pb-2">
+            <div class="flex items-end justify-between">
+                <div>
+                    <h2 class="text-black text-2xl font-extrabold tracking-tight">Trending Now</h2>
+                    <p class="text-primary/70 text-sm font-semibold tracking-wide uppercase mt-0.5">Community Favorites
+                    </p>
+                </div>
+                <button class="text-primary text-xs font-bold uppercase tracking-widest">See All</button>
+            </div>
+        </div>
+        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+            <div class="flex items-stretch px-5 py-4 gap-4">
+                <div
+                    class="snap-center flex h-full flex-col rounded-2xl bg-card-dark overflow-hidden min-w-[300px] border border-white/5 relative group">
+                    <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover flex flex-col justify-end p-5"
+                        style='background-image: linear-gradient(to top, rgba(10,15,11,1) 0%, rgba(10,15,11,0.4) 40%, transparent 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB2HJofpoaRX_nArwTbheSFWdjKbTaJsD1QNyu2etObywIw5ma9TQ8ofwxoSmXo_-8fMJhBW-kOy28Vq7r_G1Ap6uXhU867wApX1Tq_B-JgdfJYxwfoAs1Tt91Dye8cG-VBEFUxZFzuT77IsHKaBUbxe7io_IiSYBfiT8hUlNalfgvyrF4aWKVBBMxIODVem52-J66S_B63UO6541zPew7uLCHsoeR8VFC7RqF_mRkO7rAZxS9anJhzDr9meG7EOcV67WsmeIs_W0i8");'>
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span
+                                class="bg-primary text-background-dark px-3 py-1.5 rounded-lg text-[10px] font-black flex items-center gap-1.5 shadow-lg shadow-primary/30 uppercase tracking-wider">
+                                <span class="material-symbols-outlined text-xs">local_fire_department</span> Hot
+                            </span>
+                            <span
+                                class="glass-badge text-white px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider">Trending</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-primary text-5xl font-black italic tracking-tighter mb-1">80% OFF</p>
+                            <h3 class="text-white text-2xl font-extrabold leading-tight">Burger Palace</h3>
+                            <p class="text-white/60 text-sm font-medium">Premium Selection • 1.2km away</p>
+                        </div>
+                        <button
+                            class="w-full premium-button h-14 bg-primary text-background-dark rounded-xl text-base font-extrabold tracking-tight">
+                            VIEW DEAL
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="snap-center flex h-full flex-col rounded-2xl bg-card-dark overflow-hidden min-w-[300px] border border-white/5 relative">
+                    <div class="w-full bg-center bg-no-repeat aspect-[4/5] bg-cover flex flex-col justify-end p-5"
+                        style='background-image: linear-gradient(to top, rgba(10,15,11,1) 0%, rgba(10,15,11,0.4) 40%, transparent 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCTnEuN926hHwjObInFH-H5barCe2vmIZySrjeBKXsCcodNuKghM9zIWwb99IxbQfzcgX8kmj3eCsXtkBQgyaOXq1Mx-XFs2wCV1taI8jgQyzSNSD_DVjRIyckU7F7jIw3w27NdT4bfjV9jrhbnzj9TBy9FyGY2GElxnqpl1saf_8EVJiKXrZ9YW7s4rlzYOtbMO4ymL2mGNwbmVnODIN7VsL-ZjD7q7f27-u1DGTrqAWuktQQbPZttwvqSGsO6pXKKYCT8TcvcjqK0");'>
+                        <div class="absolute top-4 left-4">
+                            <span
+                                class="bg-primary text-background-dark px-3 py-1.5 rounded-lg text-[10px] font-black flex items-center gap-1.5 shadow-lg shadow-primary/30 uppercase tracking-wider">
+                                <span class="material-symbols-outlined text-xs">bolt</span> Flash Deal
+                            </span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-primary text-5xl font-black italic tracking-tighter mb-1">70% OFF</p>
+                            <h3 class="text-white text-2xl font-extrabold leading-tight">Iron Temple Gym</h3>
+                            <p class="text-white/60 text-sm font-medium">Monthly Pass • 0.8km away</p>
+                        </div>
+                        <button
+                            class="w-full premium-button h-14 bg-primary text-background-dark rounded-xl text-base font-extrabold tracking-tight">
+                            VIEW DEAL
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-5 pt-8 pb-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-black text-[22px] font-extrabold leading-tight tracking-tight">Ends Soon</h2>
+                <div class="glass-badge px-3 py-1.5 rounded-full flex items-center gap-2">
+                    <span class="text-primary material-symbols-outlined text-sm font-bold">hourglass_top</span>
+                    <span class="text-primary text-xs font-extrabold">LIMITED TIME</span>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-5">
+            <div class="glass-card flex flex-col rounded-2xl overflow-hidden pulse-red border-red-500/20">
+                <div class="flex p-4 gap-4">
+                    <div class="relative">
+                        <div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-xl shadow-lg"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBEHW-u1LGb68iKQM1aPDvtowFyPyB20ADH2jk_QRno8UETg9omXaJeIrSLrEh12z7vmH7hluuA3jbFbbYM5oXLyddGa2F771l_ugoxtvW_PWTxdsmtz8T0wy6jQj27lswk5dk2NxsTDgD1P1dJN8jS6R4G1PJW30j1aXqYZkFPXY9akzi2HcgV1T9ozFSXnD_tTlsnC4F_qCAEL39EV4ywF0wleWPXxaTXEKTLVujuLCpp8dWllUqTRbd0h-ZJjIijPXHw6uVQa9_7");'>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 bg-red-600 text-[9px] font-black text-white px-2 py-1 rounded-md shadow-lg uppercase tracking-tighter">
+                            Last Call</div>
+                    </div>
+                    <div class="flex flex-col flex-1 justify-between py-1">
+                        <div>
+                            <div class="flex justify-between items-start mb-0.5">
+                                <p class="text-white/50 text-[10px] font-extrabold tracking-[0.1em] uppercase">Tech
+                                    Gadget
+                                    Hub</p>
+                                <span
+                                    class="text-red-500 text-[10px] font-black bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">ALMOST
+                                    GONE</span>
+                            </div>
+                            <h4 class="text-white text-lg font-extrabold leading-tight">Wireless Audio Deal</h4>
+                        </div>
+                        <div class="glass-badge self-start px-2 py-1 rounded-lg flex items-center gap-1.5">
+                            <span class="text-red-500 material-symbols-outlined text-[14px]">timer</span>
+                            <p class="text-white text-[11px] font-bold">Ends in <span
+                                    class="text-red-500">00:15:22</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 pb-5 pt-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-extrabold text-white/30 uppercase tracking-widest">Stock
+                            Health</span>
+                        <span class="text-[11px] font-black text-red-500 italic">Critical: Only 2 units left!</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="bg-red-500 h-full rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]"
+                            style="width: 98%">
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <button
+                            class="w-full premium-button-red h-12 px-4 bg-red-600 text-white rounded-xl text-sm font-black tracking-widest uppercase">
+                            CLAIM COUPON NOW
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card flex flex-col rounded-2xl overflow-hidden">
+                <div class="flex p-4 gap-4">
+                    <div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-xl shadow-lg"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7emgT-oxp1AqRt4SxJDlLbHA1EK6xc31HHGvgPn0054_xGCfDmPYViqEMoEBV5BAnG4GzjgjpkMpqCWHa3aMLVBAxgA45IQmk0zmTJ1NG3YgrJEpyYBbjI2VTQcIGa4l9C1Oyo8Q7o3c5Yp8JtfJGo_eUNHY9IRamLNK6cf3zVE54O5Ep06qLaLObE4mT4VBVJ8DN9l174K8963pv-wL_FUHBBIHNCnLnxCoPu7iLFxBHIDBy-N70zWjLuXcY71_6Yb6haS8A8tf3");'>
+                    </div>
+                    <div class="flex flex-col flex-1 justify-between py-1">
+                        <div>
+                            <div class="flex justify-between items-start mb-0.5">
+                                <p class="text-white/50 text-[10px] font-extrabold tracking-[0.1em] uppercase">Pizza
+                                    Heaven
+                                </p>
+                                <span
+                                    class="text-primary text-[10px] font-black bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">HOT
+                                    DEAL</span>
+                            </div>
+                            <h4 class="text-white text-lg font-extrabold leading-tight">75% OFF Family Combo</h4>
+                        </div>
+                        <div class="glass-badge self-start px-2 py-1 rounded-lg flex items-center gap-1.5">
+                            <span class="text-primary material-symbols-outlined text-[14px]">timer</span>
+                            <p class="text-white text-[11px] font-bold">Ends in <span
+                                    class="text-primary">01:12:05</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 pb-5 pt-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-extrabold text-white/30 uppercase tracking-widest">Stock
+                            Health</span>
+                        <span class="text-[11px] font-black text-primary italic">Only 12 left!</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="bg-primary h-full rounded-full" style="width: 85%"></div>
+                    </div>
+                    <div class="mt-5">
+                        <button
+                            class="w-full premium-button h-12 px-4 bg-primary text-background-dark rounded-xl text-sm font-black tracking-widest uppercase">
+                            CLAIM COUPON NOWSee All
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card flex flex-col rounded-2xl overflow-hidden">
+                <div class="flex p-4 gap-4">
+                    <div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-xl shadow-lg"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtbOHSP_RrAbWw6GBVu--k-ply16-Xyfyr__UGi5jAPQULxg_nwj_6Vc1Zbr3CNBEwvlwPkvhpLZeK1gWvr_9lTeQOspPwt2V4QJ9HDUUgdXPwiEdl9mH-BrCrKewbJVq5V5GQ8dZ9BP7FQDyWTbNkC136kyKZEjHf7l4UIPFX48u9u9xQbVYnBteUZrCVOmTn6-9KVCbYvmIlFfG9YjWWFk5j-fiwZudCB3qkNQOoUZMDXXX1NmWie9Q81X9pEOrog4j0vxBsZpf9");'>
+                    </div>
+                    <div class="flex flex-col flex-1 justify-between py-1">
+                        <div>
+                            <div class="flex justify-between items-start mb-0.5">
+                                <p class="text-white/50 text-[10px] font-extrabold tracking-[0.1em] uppercase">Zen
+                                    Wellness
+                                    Center</p>
+                                <span
+                                    class="text-primary text-[10px] font-black bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">POPULAR</span>
+                            </div>
+                            <h4 class="text-white text-lg font-extrabold leading-tight">Full Massage Therapy</h4>
+                        </div>
+                        <div class="glass-badge self-start px-2 py-1 rounded-lg flex items-center gap-1.5">
+                            <span class="text-primary material-symbols-outlined text-[14px]">timer</span>
+                            <p class="text-white text-[11px] font-bold">Ends in <span
+                                    class="text-primary">02:45:30</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 pb-5 pt-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-extrabold text-white/30 uppercase tracking-widest">Stock
+                            Health</span>
+                        <span class="text-[11px] font-black text-primary italic">45 vouchers left</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="bg-primary h-full rounded-full" style="width: 40%"></div>
+                    </div>
+                    <div class="mt-5">
+                        <button
+                            class="w-full premium-button h-12 px-4 bg-primary text-background-dark rounded-xl text-sm font-black tracking-widest uppercase">
+                            CLAIM COUPON NOW
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bottom-nav-container"></div>
+        <script src="../components/js/bottom_navigation.js"></script>
+        <script>
+            window.addEventListener('load', function () {
+                if (typeof loadBottomNav === 'function') {
+                    loadBottomNav("coupons");
+                }
+            });
+        </script>
+        <style>
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+
+            .hide-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        </style>
+    </div>
+</body>
+
+</html>
