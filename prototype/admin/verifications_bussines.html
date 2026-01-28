@@ -98,144 +98,75 @@
             </div>
         </div>
         <!-- List Content -->
-        <div class="space-y-3 p-4">
-            <!-- Verification Card 1 -->
+        <div class="space-y-3 p-4" id="verification-list">
+            <!-- Dynamic Content -->
             <div
-                class="bg-white dark:bg-[#1a2e1f] rounded-xl border border-[#dbe6df] dark:border-[#2a3d31] overflow-hidden shadow-sm">
+                class="animate-pulse flex gap-4 p-4 bg-white dark:bg-[#1a2e1f] rounded-xl border border-[#dbe6df] dark:border-[#2a3d31]">
+                <div class="size-12 bg-gray-200 dark:bg-white/10 rounded-lg"></div>
+                <div class="flex-1 space-y-2">
+                    <div class="h-4 bg-gray-200 dark:bg-white/10 rounded w-3/4"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-white/10 rounded w-1/2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../common/js/dataManager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderList();
+        });
+
+        function renderList() {
+            const container = document.getElementById('verification-list');
+            const businesses = DataManager.getBusinesses().filter(b => b.status === 'pending');
+
+            if (businesses.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 opacity-60">
+                        <span class="material-symbols-outlined text-4xl mb-2">assignment_turned_in</span>
+                         <p>No hay solicitudes pendientes.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = businesses.map(bus => `
+            <div class="bg-white dark:bg-[#1a2e1f] rounded-xl border border-[#dbe6df] dark:border-[#2a3d31] overflow-hidden shadow-sm">
                 <div class="flex gap-4 p-4 items-start">
-                    <div class="text-[#111813] dark:text-primary flex items-center justify-center rounded-lg bg-[#f0f4f2] dark:bg-[#25382b] shrink-0 size-12"
-                        data-icon="Storefront">
+                    <div class="text-[#111813] dark:text-primary flex items-center justify-center rounded-lg bg-[#f0f4f2] dark:bg-[#25382b] shrink-0 size-12">
                         <span class="material-symbols-outlined">storefront</span>
                     </div>
                     <div class="flex flex-1 flex-col">
                         <div class="flex justify-between items-start">
-                            <p class="text-[#111813] dark:text-white text-base font-bold leading-tight">Tienda Don Pepe
-                                S.A.C.</p>
-                            <span
-                                class="inline-flex items-center rounded-md bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200">Pendiente</span>
+                            <p class="text-[#111813] dark:text-white text-base font-bold leading-tight line-clamp-1">${bus.name}</p>
+                            <span class="inline-flex items-center rounded-md bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200">Pendiente</span>
                         </div>
-                        <p class="text-[#61896f] text-sm mt-1 font-mono">RUC: 20456789012</p>
-                        <p class="text-[#61896f] text-xs mt-0.5">Recibido: 12 Oct 2023, 14:30</p>
+                        <p class="text-[#61896f] text-sm mt-1 font-mono">Owner ID: ${bus.ownerId}</p>
+                        <p class="text-[#61896f] text-xs mt-0.5">Creado: ${new Date(bus.createdAt).toLocaleDateString()}</p>
                     </div>
                 </div>
                 <div class="flex gap-2 px-4 pb-4">
-                    <button
+                    <button onclick="handleAction('${bus.id}', 'verified')"
                         class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-primary text-[#111813] text-xs font-bold transition hover:opacity-90">
                         <span class="material-symbols-outlined text-sm mr-1">check_circle</span> Aprobar
                     </button>
-                    <button
+                    <button onclick="handleAction('${bus.id}', 'rejected')"
                         class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 text-xs font-bold transition hover:opacity-90">
                         <span class="material-symbols-outlined text-sm mr-1">cancel</span> Rechazar
                     </button>
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold transition hover:opacity-90">
-                        <span class="material-symbols-outlined text-sm mr-1">visibility</span> Detalles
-                    </button>
                 </div>
             </div>
-            <!-- Verification Card 2 -->
-            <div
-                class="bg-white dark:bg-[#1a2e1f] rounded-xl border border-[#dbe6df] dark:border-[#2a3d31] overflow-hidden shadow-sm">
-                <div class="flex gap-4 p-4 items-start">
-                    <div
-                        class="text-[#111813] dark:text-primary flex items-center justify-center rounded-lg bg-[#f0f4f2] dark:bg-[#25382b] shrink-0 size-12">
-                        <span class="material-symbols-outlined">restaurant</span>
-                    </div>
-                    <div class="flex flex-1 flex-col">
-                        <div class="flex justify-between items-start">
-                            <p class="text-[#111813] dark:text-white text-base font-bold leading-tight">Delicias del Mar
-                                E.I.R.L.</p>
-                            <span
-                                class="inline-flex items-center rounded-md bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200">Pendiente</span>
-                        </div>
-                        <p class="text-[#61896f] text-sm mt-1 font-mono">RUC: 10452390110</p>
-                        <p class="text-[#61896f] text-xs mt-0.5">Recibido: 12 Oct 2023, 11:15</p>
-                    </div>
-                </div>
-                <div class="flex gap-2 px-4 pb-4">
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-primary text-[#111813] text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">check_circle</span> Aprobar
-                    </button>
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">cancel</span> Rechazar
-                    </button>
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">visibility</span> Detalles
-                    </button>
-                </div>
-            </div>
-            <!-- Verification Card 3 -->
-            <div
-                class="bg-white dark:bg-[#1a2e1f] rounded-xl border border-[#dbe6df] dark:border-[#2a3d31] overflow-hidden shadow-sm">
-                <div class="flex gap-4 p-4 items-start">
-                    <div
-                        class="text-[#111813] dark:text-primary flex items-center justify-center rounded-lg bg-[#f0f4f2] dark:bg-[#25382b] shrink-0 size-12">
-                        <span class="material-symbols-outlined">shopping_bag</span>
-                    </div>
-                    <div class="flex flex-1 flex-col">
-                        <div class="flex justify-between items-start">
-                            <p class="text-[#111813] dark:text-white text-base font-bold leading-tight">Moda Urbana Chic
-                            </p>
-                            <span
-                                class="inline-flex items-center rounded-md bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200">Pendiente</span>
-                        </div>
-                        <p class="text-[#61896f] text-sm mt-1 font-mono">RUC: 20556677889</p>
-                        <p class="text-[#61896f] text-xs mt-0.5">Recibido: 11 Oct 2023, 18:45</p>
-                    </div>
-                </div>
-                <div class="flex gap-2 px-4 pb-4">
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-primary text-[#111813] text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">check_circle</span> Aprobar
-                    </button>
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">cancel</span> Rechazar
-                    </button>
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">visibility</span> Detalles
-                    </button>
-                </div>
-            </div>
-            <!-- Verification Card 4 -->
-            <div
-                class="bg-white dark:bg-[#1a2e1f] rounded-xl border border-[#dbe6df] dark:border-[#2a3d31] overflow-hidden shadow-sm opacity-80">
-                <div class="flex gap-4 p-4 items-start">
-                    <div
-                        class="text-[#111813] dark:text-primary flex items-center justify-center rounded-lg bg-[#f0f4f2] dark:bg-[#25382b] shrink-0 size-12">
-                        <span class="material-symbols-outlined">home_repair_service</span>
-                    </div>
-                    <div class="flex flex-1 flex-col">
-                        <div class="flex justify-between items-start">
-                            <p class="text-[#111813] dark:text-white text-base font-bold leading-tight">Ferretería
-                                Central</p>
-                            <span
-                                class="inline-flex items-center rounded-md bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200">Pendiente</span>
-                        </div>
-                        <p class="text-[#61896f] text-sm mt-1 font-mono">RUC: 20112233445</p>
-                        <p class="text-[#61896f] text-xs mt-0.5">Recibido: 11 Oct 2023, 09:20</p>
-                    </div>
-                </div>
-                <div class="flex gap-2 px-4 pb-4">
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-primary text-[#111813] text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">check_circle</span> Aprobar
-                    </button>
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">cancel</span> Rechazar
-                    </button>
-                    <button
-                        class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold">
-                        <span class="material-symbols-outlined text-sm mr-1">visibility</span> Detalles
-                    </button>
-                </div>
-            </div>
-        </div>
+            `).join('');
+        }
+
+        function handleAction(id, status) {
+            if (confirm(`¿Estás seguro de ${status === 'verified' ? 'aprobar' : 'rechazar'} este negocio?`)) {
+                DataManager.updateBusinessStatus(id, status);
+                renderList();
+            }
+        }
+    </script>
     </div>
     <!-- Floating Action Summary -->
     <div

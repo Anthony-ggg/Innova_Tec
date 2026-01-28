@@ -128,45 +128,17 @@
                 <!-- ListItem: Oferta Relámpago -->
                 <div
                     class="group relative flex gap-4 bg-white dark:bg-zinc-900 px-4 py-4 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors border-b border-zinc-50 dark:border-zinc-800">
-                    <div class="flex items-start gap-4 flex-1">
+                    <div class="px-5 pt-6 flex-1 overflow-y-auto pb-32" id="notifications-container">
+                        <!-- Dynamic Content -->
                         <div
-                            class="text-amber-500 flex items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-900/20 shrink-0 size-12">
-                            <span class="material-symbols-outlined text-2xl">bolt</span>
-                        </div>
-                        <div class="flex flex-1 flex-col justify-center">
-                            <p class="text-[#111813] dark:text-white text-base font-bold leading-normal mb-0.5">Oferta
-                                Relámpago</p>
-                            <p class="text-zinc-500 dark:text-zinc-400 text-xs font-medium leading-normal mb-1">Ayer •
-                                Boutique Bella</p>
-                            <p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-relaxed">Solo por
-                                hoy: 2x1 en toda la colección de verano. ¡No te lo pierdas!</p>
+                            class="animate-pulse flex gap-4 p-4 rounded-2xl bg-white dark:bg-[#121813] border border-gray-100 dark:border-white/5">
+                            <div class="size-12 rounded-full bg-gray-200 dark:bg-white/10"></div>
+                            <div class="flex-1 space-y-2">
+                                <div class="h-4 bg-gray-200 dark:bg-white/10 rounded w-3/4"></div>
+                                <div class="h-3 bg-gray-200 dark:bg-white/10 rounded w-1/2"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="shrink-0 pt-1">
-                        <div class="flex size-7 items-center justify-center">
-                            <div class="size-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(19,236,91,0.6)]"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ListItem: App Update -->
-                <div
-                    class="group relative flex gap-4 bg-white dark:bg-zinc-900 px-4 py-4 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors border-b border-zinc-50 dark:border-zinc-800">
-                    <div class="flex items-start gap-4 flex-1">
-                        <div
-                            class="text-zinc-600 dark:text-zinc-300 flex items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 shrink-0 size-12">
-                            <span class="material-symbols-outlined text-2xl">update</span>
-                        </div>
-                        <div class="flex flex-1 flex-col justify-center">
-                            <p class="text-[#111813] dark:text-white text-base font-bold leading-normal mb-0.5">
-                                Actualización disponible</p>
-                            <p class="text-zinc-500 dark:text-zinc-400 text-xs font-medium leading-normal mb-1">Hace 3
-                                días</p>
-                            <p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-relaxed">Hemos
-                                mejorado la velocidad del mapa y corregido errores menores.</p>
-                        </div>
-                    </div>
-                    <div class="shrink-0 pt-1 w-7"></div>
-                </div>
             </section>
         </main>
         <!-- Bottom Navigation -->
@@ -175,15 +147,63 @@
     </div>
     <!-- Componentes -->
     <!-- Not module (async defer) to support file:// protocol -->
+    <script src="../../common/js/dataManager.js"></script>
     <script src="../components/js/bottom_navigation.js"></script>
     <script>
-        // Wait for script to load then run
-        window.addEventListener('load', function () {
+        document.addEventListener('DOMContentLoaded', () => {
             if (typeof loadBottomNav === 'function') {
                 loadBottomNav("alerts");
-            } else {
-                console.error("loadBottomNav function not found. Check path to script.");
             }
+
+            const user = DataManager.getSession();
+            const container = document.getElementById('notifications-container');
+
+            if (!user) {
+                container.innerHTML = `<div class="p-6 text-center text-gray-500">Inicia sesión para ver tus notificaciones</div>`;
+                return;
+            }
+
+            const orders = DataManager.getOrdersByUser(user.id);
+
+            if (orders.length === 0) {
+                container.innerHTML = `
+                   <div class="flex flex-col items-center justify-center h-full text-center py-20 opacity-60">
+                        <span class="material-symbols-outlined text-6xl mb-4 text-gray-300">notifications_off</span>
+                        <p class="text-lg font-bold">Sin notificaciones</p>
+                        <p class="text-sm">Tus compras y alertas aparecerán aquí.</p>
+                   </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = orders.map(order => {
+                const item = order.items[0]; // Assuming single item per order for now
+                return `
+                <div class="flex gap-4 p-4 mb-3 rounded-2xl bg-white dark:bg-[#121813] border border-gray-100 dark:border-white/5 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 size-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-primary text-2xl">shopping_bag</span>
+                    </div>
+                    <div class="relative z-10 flex-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-base font-bold text-[#111813] dark:text-white leading-tight">Compra Exitosa</h3>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">${new Date(order.createdAt).toLocaleDateString()}</span>
+                        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium leading-normal mb-2">
+                            Has comprado el cupón <b class="text-[#111813] dark:text-white">${item.title}</b> por <span class="text-primary font-bold">$${order.total.toFixed(2)}</span>.
+                        </p>
+                        <div class="flex items-center gap-2">
+                             <div class="bg-primary/20 text-primary px-2 py-0.5 rounded-lg text-[10px] font-black uppercase tracking-wider">
+                                Order #${order.id.split('-').pop()}
+                             </div>
+                             <span class="text-green-500 text-xs font-bold flex items-center gap-0.5">
+                                <span class="material-symbols-outlined text-sm">check_circle</span> Completado
+                             </span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
         });
     </script>
 </body>

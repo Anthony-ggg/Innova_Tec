@@ -82,114 +82,134 @@
                             Miembro desde 2023</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Stats Section (Impact Dashboard) -->
-        <div class="px-4 py-2">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div
-                    class="flex min-w-[150px] flex-1 flex-col gap-2 rounded-xl p-5 bg-white dark:bg-zinc-800 shadow-sm border border-gray-100 dark:border-gray-700">
-                    <div class="flex items-center gap-2">
-                        <span
-                            class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-xl">confirmation_number</span>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm font-medium leading-normal">Cupones usados
-                        </p>
-                    </div>
-                    <p class="text-[#111813] dark:text-white tracking-tight text-3xl font-bold leading-tight">12</p>
-                </div>
-                <div
-                    class="flex min-w-[150px] flex-1 flex-col gap-2 rounded-xl p-5 bg-primary/10 dark:bg-primary/5 border border-primary/20 shadow-sm">
-                    <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary text-xl">savings</span>
-                        <p class="text-[#111813] dark:text-primary/90 text-sm font-medium leading-normal">Ahorro total
-                        </p>
-                    </div>
-                    <p class="text-[#111813] dark:text-white tracking-tight text-3xl font-bold leading-tight">$45.00</p>
-                </div>
-            </div>
-        </div>
-        <!-- Categorías de interés -->
-        <div class="mt-4">
-            <h3
-                class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
-                Categorías de interés</h3>
-            <div class="flex gap-2 p-4 flex-wrap">
-                <div
-                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-primary text-white pl-4 pr-4 shadow-md shadow-primary/20">
-                    <span class="material-symbols-outlined text-[18px]">restaurant</span>
-                    <p class="text-sm font-semibold leading-normal">Comida</p>
-                </div>
-                <div
-                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-white dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 pl-4 pr-4">
-                    <span class="material-symbols-outlined text-[18px] text-gray-500">checkroom</span>
-                    <p class="text-[#111813] dark:text-gray-300 text-sm font-medium leading-normal">Ropa</p>
-                </div>
-                <div
-                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-white dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 pl-4 pr-4">
-                    <span class="material-symbols-outlined text-[18px] text-gray-500">handyman</span>
-                    <p class="text-[#111813] dark:text-gray-300 text-sm font-medium leading-normal">Servicios</p>
-                </div>
-                <div
-                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-primary text-white pl-4 pr-4 shadow-md shadow-primary/20">
-                    <span class="material-symbols-outlined text-[18px]">devices</span>
-                    <p class="text-sm font-semibold leading-normal">Tecnología</p>
-                </div>
-                <div
-                    class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-white dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 pl-4 pr-4">
-                    <span class="material-symbols-outlined text-[18px] text-gray-500">home</span>
-                    <p class="text-[#111813] dark:text-gray-300 text-sm font-medium leading-normal">Hogar</p>
-                </div>
-            </div>
-        </div>
-        <!-- History/Activity Section -->
-        <div class="flex-grow mt-2">
-            <h3
-                class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
-                Actividad reciente</h3>
-            <div class="px-4 flex flex-col gap-3">
-                <div
-                    class="flex items-center justify-between p-4 bg-white dark:bg-zinc-800 rounded-lg border border-gray-100 dark:border-gray-700">
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-gray-500">local_pizza</span>
+                <div class="px-5 pt-2 pb-6 space-y-6 flex-1 overflow-y-auto pb-32">
+                    <!-- Profile Header -->
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <div class="size-20 rounded-full bg-gradient-to-tr from-primary to-emerald-400 p-[2px]">
+                                <div class="size-full rounded-full bg-white dark:bg-background-dark p-1">
+                                    <img src="https://ui-avatars.com/api/?name=User&background=random" id="profile-img"
+                                        class="size-full rounded-full object-cover">
+                                </div>
+                            </div>
+                            <div
+                                class="absolute bottom-1 right-1 size-6 bg-primary rounded-full border-[3px] border-white dark:border-background-dark flex items-center justify-center text-white text-[10px]">
+                                <span class="material-symbols-outlined text-xs">edit</span>
+                            </div>
                         </div>
                         <div>
-                            <p class="font-bold text-sm text-[#111813] dark:text-white">Pizza Local Co.</p>
-                            <p class="text-xs text-gray-500">Ayer • Cupón 2x1</p>
+                            <h2 id="user-name"
+                                class="text-xl font-extrabold text-[#111813] dark:text-white leading-tight">Cargando...
+                            </h2>
+                            <p id="user-email" class="text-sm font-medium text-gray-500 dark:text-gray-400">...</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span
+                                    class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full border border-primary/20 uppercase tracking-wider"
+                                    id="user-role">MEMBER</span>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-primary font-bold text-sm">-$12.50</p>
-                </div>
-                <div
-                    class="flex items-center justify-between p-4 bg-white dark:bg-zinc-800 rounded-lg border border-gray-100 dark:border-gray-700">
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-gray-500">shopping_bag</span>
-                        </div>
-                        <div>
-                            <p class="font-bold text-sm text-[#111813] dark:text-white">Boutique Urbana</p>
-                            <p class="text-xs text-gray-500">15 Oct • 15% Desc.</p>
-                        </div>
-                    </div>
-                    <p class="text-primary font-bold text-sm">-$8.00</p>
-                </div>
-            </div>
-        </div>
-        <!-- Footer / Navigation Bar Placeholder -->
-        <div id="bottom-nav-container"></div>
 
-    </div>
-    <!-- Componentes -->
-    <script src="../components/js/bottom_navigation.js"></script>
-    <script>
-        window.addEventListener('load', function () {
-            if (typeof loadBottomNav === 'function') {
-                loadBottomNav("profile");
-            }
-        });
-    </script>
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div
+                            class="bg-white dark:bg-[#121813] p-4 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
+                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mb-1">Ahorro Total</p>
+                            <p class="text-2xl font-black text-[#111813] dark:text-white">$0.00</p> <!-- Mock -->
+                        </div>
+                        <div
+                            class="bg-white dark:bg-[#121813] p-4 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
+                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mb-1">Cupones Usados</p>
+                            <p class="text-2xl font-black text-primary">0</p> <!-- Mock -->
+                        </div>
+                    </div>
+
+                    <!-- Settings List -->
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white px-1">Cuenta</h3>
+                        <div
+                            class="bg-white dark:bg-[#121813] rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden">
+                            <button
+                                class="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors border-b border-gray-100 dark:border-white/5">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="size-8 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center text-blue-500">
+                                        <span class="material-symbols-outlined text-lg">person</span>
+                                    </div>
+                                    <span class="font-bold text-[#111813] dark:text-white">Datos Personales</span>
+                                </div>
+                                <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+                            </button>
+                            <!-- Switch Role Button (Only for Owner/Admin) -->
+                            <button id="switch-role-btn"
+                                class="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors border-b border-gray-100 dark:border-white/5 hidden">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="size-8 rounded-full bg-purple-50 dark:bg-purple-500/10 flex items-center justify-center text-purple-500">
+                                        <span class="material-symbols-outlined text-lg">swap_horiz</span>
+                                    </div>
+                                    <span class="font-bold text-[#111813] dark:text-white">Cambiar Modo</span>
+                                </div>
+                                <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+                            </button>
+                            <button onclick="Auth.logout()"
+                                class="w-full flex items-center justify-between p-4 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors group">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="size-8 rounded-full bg-red-50 dark:bg-red-500/10 flex items-center justify-center text-red-500 group-hover:bg-red-100 dark:group-hover:bg-red-500/20 transition-colors">
+                                        <span class="material-symbols-outlined text-lg">logout</span>
+                                    </div>
+                                    <span class="font-bold text-red-500">Cerrar Sesión</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <p class="text-center text-xs text-gray-400 font-medium pt-4">Versión 1.0.0 (Prototype)</p>
+                </div>
+
+                <div id="bottom-nav-container"></div>
+            </div>
+
+            <script src="../../common/js/dataManager.js"></script>
+            <script src="../../common/js/auth.js"></script>
+            <script src="../../components/js/bottom_navigation.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    if (typeof loadBottomNav === 'function') {
+                        loadBottomNav("profile");
+                    }
+
+                    const user = DataManager.getSession();
+                    if (user) {
+                        document.getElementById('user-name').textContent = user.name;
+                        document.getElementById('user-email').textContent = user.email;
+                        document.getElementById('user-role').textContent = user.role.toUpperCase();
+                        document.getElementById('profile-img').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=13ec5b&color=fff`;
+
+                        // Show switch button if owner or admin
+                        if (user.role === 'admin' || user.role === 'owner') {
+                            // Logic for switching? For now, button just exists but we can make it redirect to opposite Landing
+                            // But wait, "Switch Mode" usually implies changing the View context while keeping same user.
+                            // For prototype, let's just make it redirect to the "Other" landing page.
+                            const btn = document.getElementById('switch-role-btn');
+                            btn.classList.remove('hidden');
+                            btn.onclick = () => {
+                                if (confirm('¿Ir al panel de gestión?')) {
+                                    Auth.redirectBasedOnUser(user); // Reprocess redirect logic
+                                    // Actually, Auth.redirectBasedOnUser sends them to their MAIN role landing.
+                                    // If they are currently IN their main role landing, they might want to see CLIENT view.
+                                    // Implementing simple toggle is complex without state.
+                                    // Let's just alert "Feature Coming Soon"
+                                    alert('Cambio de vista (Cliente <-> Gestión) próximamente.');
+                                }
+                            }
+                        }
+                    } else {
+                        window.location.href = '../../auth/singIn.html';
+                    }
+                });
+            </script>
 </body>
 
 </html>

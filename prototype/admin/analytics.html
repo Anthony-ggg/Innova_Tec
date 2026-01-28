@@ -150,7 +150,7 @@
                             <span class="text-xs font-bold text-accent-success">+12%</span>
                         </div>
                         <p class="text-xs text-slate-500 font-medium">Usuarios Totales</p>
-                        <p class="text-xl font-bold">12.5k</p>
+                        <p class="text-xl font-bold" id="stat-users">0</p>
                     </div>
                     <div
                         class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5 flex flex-col gap-1">
@@ -159,7 +159,7 @@
                             <span class="text-xs font-bold text-accent-success">+5%</span>
                         </div>
                         <p class="text-xs text-slate-500 font-medium">Negocios Activos</p>
-                        <p class="text-xl font-bold">840</p>
+                        <p class="text-xl font-bold" id="stat-businesses">0</p>
                     </div>
                     <div
                         class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5 flex flex-col gap-1">
@@ -168,7 +168,7 @@
                             <span class="text-xs font-bold text-accent-success">+18%</span>
                         </div>
                         <p class="text-xs text-slate-500 font-medium">Cupones</p>
-                        <p class="text-xl font-bold">3.2k</p>
+                        <p class="text-xl font-bold" id="stat-coupons">0</p>
                     </div>
                     <div
                         class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5 flex flex-col gap-1">
@@ -177,178 +177,50 @@
                             <span class="text-xs font-bold text-red-500">-2%</span>
                         </div>
                         <p class="text-xs text-slate-500 font-medium">Ingresos</p>
-                        <p class="text-xl font-bold">$45.2k</p>
+                        <p class="text-xl font-bold">$0.00</p>
                     </div>
                 </div>
             </section>
-            <!-- SectionHeader -->
+
+            <!-- Rest of the static charts... keeping them static for now as mock visualization -->
             <div class="flex items-center justify-between">
                 <h3 class="text-lg font-bold">Crecimiento de Usuarios</h3>
                 <button class="text-xs font-bold text-primary px-3 py-1 rounded-full bg-primary/10">6 Meses</button>
             </div>
-            <!-- Chart: Line Graph -->
             <div class="bg-white dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-black/5 dark:border-white/5">
                 <div class="mb-4">
                     <p class="text-2xl font-bold">+2,400 <span class="text-sm font-normal text-slate-500">este
                             mes</span></p>
                 </div>
                 <div class="relative h-48 w-full">
-                    <!-- SVG Chart -->
-                    <svg class="w-full h-full overflow-visible" viewbox="0 0 400 150">
-                        <defs>
-                            <lineargradient id="lineGrad" x1="0%" x2="0%" y1="0%" y2="100%">
-                                <stop offset="0%" stop-color="#135bec" stop-opacity="0.3"></stop>
-                                <stop offset="100%" stop-color="#135bec" stop-opacity="0"></stop>
-                            </lineargradient>
-                        </defs>
-                        <!-- Area -->
-                        <path
-                            d="M0,130 C40,120 80,140 120,80 C160,20 200,60 240,40 C280,20 320,50 360,10 L400,10 L400,150 L0,150 Z"
-                            fill="url(#lineGrad)"></path>
-                        <!-- Line -->
-                        <path d="M0,130 C40,120 80,140 120,80 C160,20 200,60 240,40 C280,20 320,50 360,10" fill="none"
-                            stroke="#135bec" stroke-linecap="round" stroke-width="3"></path>
-                        <!-- Points -->
-                        <circle cx="120" cy="80" fill="#135bec" r="4"></circle>
-                        <circle cx="240" cy="40" fill="#135bec" r="4"></circle>
-                        <circle cx="360" cy="10" fill="#135bec" r="4"></circle>
-                    </svg>
-                </div>
-                <div class="flex justify-between mt-4">
-                    <span class="text-[10px] font-bold text-slate-500">ENE</span>
-                    <span class="text-[10px] font-bold text-slate-500">FEB</span>
-                    <span class="text-[10px] font-bold text-slate-500">MAR</span>
-                    <span class="text-[10px] font-bold text-slate-500">ABR</span>
-                    <span class="text-[10px] font-bold text-slate-500">MAY</span>
-                    <span class="text-[10px] font-bold text-slate-500">JUN</span>
-                </div>
-            </div>
-            <!-- SectionHeader -->
-            <div class="flex items-center justify-between">
-                <h3 class="text-lg font-bold">Categorías más populares</h3>
-                <span class="material-symbols-outlined text-slate-400">more_horiz</span>
-            </div>
-            <!-- Chart: Bar Chart -->
-            <div class="bg-white dark:bg-card-dark p-6 rounded-2xl shadow-sm border border-black/5 dark:border-white/5">
-                <div class="flex items-end justify-between h-40 gap-4">
-                    <div class="flex-1 flex flex-col items-center gap-2">
-                        <div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500" style="height: 60%">
-                        </div>
-                        <span class="text-[10px] font-bold text-slate-500">Comida</span>
-                    </div>
-                    <div class="flex-1 flex flex-col items-center gap-2">
-                        <div class="w-full bg-primary rounded-t-lg transition-all duration-500" style="height: 100%">
-                        </div>
-                        <span class="text-[10px] font-bold text-slate-500">Ropa</span>
-                    </div>
-                    <div class="flex-1 flex flex-col items-center gap-2">
-                        <div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500" style="height: 45%">
-                        </div>
-                        <span class="text-[10px] font-bold text-slate-500">Salud</span>
-                    </div>
-                    <div class="flex-1 flex flex-col items-center gap-2">
-                        <div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500" style="height: 75%">
-                        </div>
-                        <span class="text-[10px] font-bold text-slate-500">Hogar</span>
-                    </div>
-                    <div class="flex-1 flex flex-col items-center gap-2">
-                        <div class="w-full bg-primary/20 rounded-t-lg transition-all duration-500" style="height: 30%">
-                        </div>
-                        <span class="text-[10px] font-bold text-slate-500">Otros</span>
+                    <!-- Static SVG Chart (Placeholder) -->
+                    <div class="flex items-center justify-center h-full text-slate-400 text-xs">Chart not implemented
                     </div>
                 </div>
             </div>
-            <!-- Alert Section -->
-            <div class="flex items-center justify-between pt-2">
-                <h3 class="text-lg font-bold">Alertas Recientes</h3>
-                <a class="text-xs font-semibold text-primary" href="#">Ver todo</a>
-            </div>
-            <div class="space-y-3">
-                <!-- Alert Item -->
-                <div
-                    class="bg-white dark:bg-card-dark p-4 rounded-2xl border border-black/5 dark:border-white/5 flex items-start gap-4">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-accent-warning/10 text-accent-warning flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined">pending_actions</span>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="text-sm font-bold">Verificación Pendiente</h4>
-                            <span class="text-[10px] text-slate-500">Ahora</span>
-                        </div>
-                        <p class="text-xs text-slate-500 mb-3 leading-relaxed">"Pizza Palace" ha solicitado la
-                            verificación de su negocio para publicar cupones.</p>
-                        <div class="flex gap-2">
-                            <button
-                                class="flex-1 py-2 text-xs font-bold bg-primary text-white rounded-lg">Revisar</button>
-                            <button
-                                class="px-3 py-2 text-xs font-bold bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 rounded-lg">Ignorar</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Alert Item -->
-                <div
-                    class="bg-white dark:bg-card-dark p-4 rounded-2xl border border-black/5 dark:border-white/5 flex items-start gap-4 opacity-80">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-accent-success/10 text-accent-success flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined">trending_up</span>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="text-sm font-bold">Pico de Canje</h4>
-                            <span class="text-[10px] text-slate-500">2h atrás</span>
-                        </div>
-                        <p class="text-xs text-slate-500 leading-relaxed">Se detectó un aumento del 40% en canjes en la
-                            categoría "Retail" durante la última hora.</p>
-                    </div>
-                </div>
-            </div>
+
         </main>
-        <!-- Bottom Navigation (iOS Style) -->
-        <nav
-            class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-background-dark/80 backdrop-blur-xl border-t border-black/5 dark:border-white/5 px-6 pb-6 pt-3 flex justify-between items-center z-40">
-            <button class="flex flex-col items-center gap-1 text-primary">
-                <span class="material-symbols-outlined font-variation-fill text-2xl">home</span>
-                <span class="text-[10px] font-bold">Inicio</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 text-slate-400">
-                <span class="material-symbols-outlined text-2xl">group</span>
-                <span class="text-[10px] font-bold">Usuarios</span>
-            </button>
-            <div class="relative -top-6">
-                <button
-                    class="w-14 h-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center text-white">
-                    <span class="material-symbols-outlined text-3xl">add</span>
-                </button>
-            </div>
-            <button class="flex flex-col items-center gap-1 text-slate-400">
-                <span class="material-symbols-outlined text-2xl">storefront</span>
-                <span class="text-[10px] font-bold">Tiendas</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 text-slate-400">
-                <span class="material-symbols-outlined text-2xl">settings</span>
-                <span class="text-[10px] font-bold">Ajustes</span>
-            </button>
-        </nav>
+        <!-- Bottom Navigation -->
+        <div id="bottom-nav-container"></div>
     </div>
-    <!-- Script to simulate drawer toggle for presentation -->
+
+    <script src="../../common/js/dataManager.js"></script>
+    <script src="../../common/js/auth.js"></script>
+    <script src="../../components/js/bottom_navigation.js"></script>
+
     <script>
-        // Only for demonstration purpose to allow seeing the navigation drawer
-        document.querySelector('button').addEventListener('click', function () {
-            const drawer = document.getElementById('drawer');
-            const overlay = drawer.querySelector('.absolute.bg-black\\/60');
-            const content = drawer.querySelector('.absolute.left-0');
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof loadBottomNav === 'function') {
+                loadBottomNav("admin");
+            }
 
-            drawer.classList.remove('pointer-events-none');
-            overlay.classList.add('opacity-100');
-            content.classList.remove('-translate-x-full');
+            const users = DataManager.getUsers();
+            const businesses = DataManager.getBusinesses();
+            const coupons = DataManager.getCoupons();
 
-            overlay.addEventListener('click', function hide() {
-                overlay.classList.remove('opacity-100');
-                content.classList.add('-translate-x-full');
-                setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
-                overlay.removeEventListener('click', hide);
-            });
+            document.getElementById('stat-users').textContent = users.length;
+            document.getElementById('stat-businesses').textContent = businesses.filter(b => b.status === 'verified').length;
+            document.getElementById('stat-coupons').textContent = coupons.length;
         });
     </script>
 </body>

@@ -108,7 +108,7 @@
                     <div class="group relative flex items-center">
                         <span
                             class="material-symbols-outlined absolute left-4 text-[#61896f] group-focus-within:text-primary transition-colors">mail</span>
-                        <input
+                        <input id="email"
                             class="w-full pl-12 pr-4 h-14 bg-white dark:bg-[#1a2e21]/50 border border-[#dbe6df] dark:border-white/10 rounded-2xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all shadow-sm"
                             placeholder="tu@email.com" type="email" />
                     </div>
@@ -118,7 +118,7 @@
                     <div class="group relative flex items-center">
                         <span
                             class="material-symbols-outlined absolute left-4 text-[#61896f] group-focus-within:text-primary transition-colors">lock</span>
-                        <input
+                        <input id="password"
                             class="w-full pl-12 pr-12 h-14 bg-white dark:bg-[#1a2e21]/50 border border-[#dbe6df] dark:border-white/10 rounded-2xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all shadow-sm"
                             placeholder="••••••••" type="password" />
                         <button class="absolute right-4 text-[#61896f] hover:text-primary transition-colors">
@@ -131,7 +131,7 @@
                         href="#">¿Olvidaste tu contraseña?</a>
                 </div>
                 <div class="pt-2">
-                    <button onclick="window.location.href='../users/map.html'"
+                    <button onclick="handleLogin()"
                         class="group relative flex w-full items-center justify-center overflow-hidden rounded-2xl h-14 bg-primary text-[#102216] text-base font-extrabold transition-all hover:shadow-lg hover:shadow-primary/30 active:scale-[0.98]">
                         <span class="relative z-10 flex items-center gap-2">
                             Iniciar Sesión
@@ -140,6 +140,33 @@
                         </span>
                     </button>
                 </div>
+                <div id="error-message" class="text-red-500 text-sm text-center hidden"></div>
+
+                <script src="../common/js/dataManager.js"></script>
+                <script src="../common/js/auth.js"></script>
+                <script>
+                    function handleLogin() {
+                        const email = document.getElementById('email').value;
+                        const password = document.getElementById('password').value;
+                        const errorEl = document.getElementById('error-message');
+
+                        errorEl.classList.add('hidden');
+
+                        if (!email || !password) {
+                            errorEl.textContent = 'Por favor completa todos los campos';
+                            errorEl.classList.remove('hidden');
+                            return;
+                        }
+
+                        const result = Auth.login(email, password);
+                        if (result.success) {
+                            Auth.redirectBasedOnUser(result.user);
+                        } else {
+                            errorEl.textContent = result.message;
+                            errorEl.classList.remove('hidden');
+                        }
+                    }
+                </script>
                 <div class="flex items-center py-2">
                     <div class="flex-1 h-[1px] bg-[#dbe6df] dark:bg-white/10"></div>
                     <span class="px-4 text-[#61896f] text-[10px] font-bold uppercase tracking-[0.2em]">o continúa

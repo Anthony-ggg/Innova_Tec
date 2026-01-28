@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Completar Perfil - CUPONEA</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "primary-dark": "#1ea34d",
+                        "background-light": "#f8faf9",
+                        "background-dark": "#0c1a12",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1.25rem",
+                        "xl": "1.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-background-light dark:bg-background-dark font-display text-[#111813] dark:text-white transition-colors duration-300;
+                min-height: 100dvh;
+            }
+        }
+        .soft-gradient {
+            background: radial-gradient(circle at top right, rgba(43, 238, 108, 0.08), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(43, 238, 108, 0.05), transparent 40%);
+        }
+        .button-gradient {
+            background: linear-gradient(135deg, #2bee6c 0%, #1ea34d 100%);
+        }
+        .input-shadow {
+            box-shadow: 0 2px 8px -2px rgba(0,0,0,0.05);
+        }
+        .input-shadow:focus-within {
+            box-shadow: 0 4px 12px -2px rgba(43, 238, 108, 0.15);
+        }
+        .role-card {
+            @apply border-2 border-transparent transition-all cursor-pointer;
+        }
+        .role-card.selected {
+            @apply border-primary bg-primary/5;
+        }
+    </style>
+</head>
+
+<body class="soft-gradient">
+    <div
+        class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-white/80 dark:bg-[#102216]/90 backdrop-blur-sm shadow-2xl">
+
+        <div class="px-6 pt-10 pb-6 flex flex-col items-center">
+            <h1
+                class="text-[#111813] dark:text-white text-[28px] font-extrabold leading-tight tracking-tight text-center">
+                Completa tu Perfil
+            </h1>
+            <p class="text-[#61896f] dark:text-primary/70 text-base font-medium mt-2 text-center">
+                Cuéntanos un poco más sobre ti para personalizar tu experiencia.
+            </p>
+        </div>
+
+        <div class="flex flex-col gap-5 px-6 pb-6 flex-1">
+            <!-- Full Name -->
+            <div class="flex flex-col gap-2">
+                <label class="text-[#111813] dark:text-white text-sm font-bold ml-1">Nombre Completo</label>
+                <div
+                    class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
+                    <span class="material-symbols-outlined absolute left-4 text-[#61896f]">person</span>
+                    <input id="fullName"
+                        class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-4 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
+                        placeholder="Ej. María García" type="text" />
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex flex-col gap-2">
+                <label class="text-[#111813] dark:text-white text-sm font-bold ml-1">Teléfono</label>
+                <div
+                    class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
+                    <span class="material-symbols-outlined absolute left-4 text-[#61896f]">call</span>
+                    <input id="phone"
+                        class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-4 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
+                        placeholder="+591 70000000" type="tel" />
+                </div>
+            </div>
+
+            <!-- Role Selection -->
+            <div class="flex flex-col gap-3 mt-4">
+                <label class="text-[#111813] dark:text-white text-sm font-bold ml-1">¿Cómo usarás Cuponea?</label>
+
+                <!-- Client Option -->
+                <div onclick="selectRole('client')" id="role-client"
+                    class="role-card selected flex items-center p-4 rounded-2xl bg-white dark:bg-[#1a2e21] input-shadow gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-[#111813] dark:text-white">Quiero Ahorrar</h3>
+                        <p class="text-xs text-[#61896f]">Buscar cupones y ofertas</p>
+                    </div>
+                    <div class="check-icon text-primary opacity-100">
+                        <span class="material-symbols-outlined fill-1">check_circle</span>
+                    </div>
+                </div>
+
+                <!-- Owner Option -->
+                <div onclick="selectRole('owner')" id="role-owner"
+                    class="role-card flex items-center p-4 rounded-2xl bg-white dark:bg-[#1a2e21] input-shadow gap-4">
+                    <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                        <span class="material-symbols-outlined">storefront</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-[#111813] dark:text-white">Soy Negocio</h3>
+                        <p class="text-xs text-[#61896f]">Publicar ofertas y atraer clientes</p>
+                    </div>
+                    <div class="check-icon text-primary opacity-0">
+                        <span class="material-symbols-outlined fill-1">check_circle</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 mt-auto">
+                <button onclick="saveProfile()"
+                    class="w-full h-15 button-gradient text-[#102216] font-extrabold text-lg rounded-2xl shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.97] transition-all py-4">
+                    Comenzar Aventura
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../common/js/dataManager.js"></script>
+    <script src="../common/js/auth.js"></script>
+    <script>
+        let selectedRole = 'client';
+
+        // Check auth on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = DataManager.getSession();
+            if (!user) {
+                window.location.href = '../auth/singIn.html';
+            }
+            // Pre-fill if exists
+            if (user.name) document.getElementById('fullName').value = user.name;
+        });
+
+        function selectRole(role) {
+            selectedRole = role;
+
+            // UI Update
+            document.querySelectorAll('.role-card').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('.check-icon').classList.add('opacity-0');
+            });
+
+            const selectedEl = document.getElementById('role-' + role);
+            selectedEl.classList.add('selected');
+            selectedEl.querySelector('.check-icon').classList.remove('opacity-0');
+        }
+
+        function saveProfile() {
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!name) {
+                alert('Por favor ingresa tu nombre');
+                return;
+            }
+
+            const user = DataManager.getSession();
+
+            const updates = {
+                name: name,
+                phone: phone,
+                role: selectedRole,
+                isProfileComplete: true
+            };
+
+            DataManager.updateUser(user.id, updates);
+
+            // Redirect
+            const updatedUser = DataManager.getSession(); // Refreshed session in updateUser
+            Auth.redirectBasedOnUser(updatedUser);
+        }
+    </script>
+</body>
+
+</html>

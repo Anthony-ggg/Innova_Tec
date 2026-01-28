@@ -118,7 +118,7 @@
                 <div
                     class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
                     <span class="material-symbols-outlined absolute left-4 text-[#61896f]">mail</span>
-                    <input
+                    <input id="email"
                         class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-4 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
                         placeholder="hola@ejemplo.com" type="email" />
                 </div>
@@ -128,7 +128,7 @@
                 <div
                     class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
                     <span class="material-symbols-outlined absolute left-4 text-[#61896f]">lock</span>
-                    <input
+                    <input id="password"
                         class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-12 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
                         placeholder="••••••••" type="password" />
                     <div class="absolute right-4 text-[#61896f] cursor-pointer hover:text-primary transition-colors">
@@ -141,7 +141,7 @@
                 <div
                     class="relative flex items-center input-shadow rounded-2xl overflow-hidden transition-all border border-[#e2ece6] dark:border-[#2a3d31] bg-white dark:bg-[#1a2e21] group focus-within:border-primary">
                     <span class="material-symbols-outlined absolute left-4 text-[#61896f]">lock_reset</span>
-                    <input
+                    <input id="confirmPassword"
                         class="form-input flex-1 border-none bg-transparent h-[58px] pl-12 pr-4 text-[#111813] dark:text-white placeholder:text-[#61896f]/60 text-base font-medium focus:ring-0"
                         placeholder="••••••••" type="password" />
                 </div>
@@ -160,11 +160,45 @@
                 </label>
             </div>
             <div class="pt-2">
-                <button
+                <button onclick="handleRegister()"
                     class="w-full h-15 button-gradient text-[#102216] font-extrabold text-lg rounded-2xl shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.97] transition-all py-4">
                     Crear Cuenta
                 </button>
             </div>
+            <div id="error-message" class="text-red-500 text-sm text-center hidden mt-2"></div>
+
+            <script src="../common/js/dataManager.js"></script>
+            <script src="../common/js/auth.js"></script>
+            <script>
+                function handleRegister() {
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    const errorEl = document.getElementById('error-message');
+
+                    errorEl.classList.add('hidden');
+
+                    if (!email || !password) {
+                        errorEl.textContent = 'Por favor completa todos los campos';
+                        errorEl.classList.remove('hidden');
+                        return;
+                    }
+
+                    if (password !== confirmPassword) {
+                        errorEl.textContent = 'Las contraseñas no coinciden';
+                        errorEl.classList.remove('hidden');
+                        return;
+                    }
+
+                    const result = Auth.register(email, password);
+                    if (result.success) {
+                        Auth.redirectBasedOnUser(result.user);
+                    } else {
+                        errorEl.textContent = result.message;
+                        errorEl.classList.remove('hidden');
+                    }
+                }
+            </script>
             <div class="flex items-center gap-4 py-2">
                 <div
                     class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#dbe6df] dark:via-[#2a3d31] to-transparent">
