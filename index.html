@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Marketplace Local Ecuador - Prototipo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Phone Frame */
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .notch {
+            width: 200px;
+            height: 30px;
+            background: black;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 20px 20px;
+            z-index: 1000;
+        }
+
+        /* Screens Container */
+        .screen {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: white;
+            animation: slideIn 0.3s ease;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* App Bar */
+        .app-bar {
+            background: linear-gradient(135deg, #0066CC 0%, #004999 100%);
+            color: white;
+            padding: 50px 20px 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .app-bar h1 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .app-bar .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: white;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23666" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>') no-repeat 12px center;
+        }
+
+        /* Category Filters */
+        .category-filters {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .category-chip {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .category-chip.active {
+            background: #E3F2FD;
+            border-color: #0066CC;
+            color: #0066CC;
+            font-weight: 600;
+        }
+
+        /* Map View */
+        .map-container {
+            flex: 1;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-marker {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #FF5252;
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .map-marker:hover {
+            transform: scale(1.2);
+        }
+
+        .user-marker {
+            background: #0066CC;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Business Cards */
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .business-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            gap: 15px;
+        }
+
+        .business-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .business-logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .business-info {
+            flex: 1;
+        }
+
+        .business-name {
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .business-category {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .business-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .star {
+            color: #FFC107;
+        }
+
+        .business-distance {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* Bottom Carousel */
+        .bottom-carousel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+        }
+
+        .carousel-card {
+            min-width: 260px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .carousel-card-image {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+        }
+
+        .carousel-card-content {
+            padding: 12px;
+        }
+
+        /* Detail Screen */
+        .detail-header {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .detail-content {
+            padding: 20px;
+        }
+
+        .detail-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .detail-section {
+            margin-top: 20px;
+        }
+
+        .detail-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: #0066CC;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0,102,204,0.4);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            background: white;
+            height: 65px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .nav-item.active {
+            color: #0066CC;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        .nav-label {
+            font-size: 11px;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: absolute;
+            top: 50px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        /* Promotions */
+        .promotion-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FF5252;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .promotion-card {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .promotion-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .promotion-description {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top-color: #0066CC;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Info Banner */
+        .info-banner {
+            background: #E3F2FD;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #0066CC;
+        }
+
+        .info-banner h3 {
+            color: #0066CC;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="notch"></div>
+
+        <!-- SCREEN 1: MAPA -->
+        <div class="screen active" id="mapScreen">
+            <div class="app-bar">
+                <h1>Negocios Cercanos</h1>
+                <div class="subtitle">📍 Guayaquil, Ecuador</div>
+            </div>
+
+            <div class="category-filters">
+                <div class="category-chip active" onclick="filterCategory('all')">Todos</div>
+                <div class="category-chip" onclick="filterCategory('restaurantes')">🍽️ Restaurantes</div>
+                <div class="category-chip" onclick="filterCategory('cafeterias')">☕ Cafeterías</div>
+                <div class="category-chip" onclick="filterCategory('supermercados')">🛒 Supermercados</div>
+                <div class="category-chip" onclick="filterCategory('farmacias')">💊 Farmacias</div>
+            </div>
+
+            <div class="map-container">
+                <!-- User Location -->
+                <div class="map-marker user-marker" style="left: 50%; top: 50%;">📍</div>
+                
+                <!-- Business Markers -->
+                <div class="map-marker" style="left: 60%; top: 35%;" onclick="showBusinessDetail(1)">🍽️</div>
+                <div class="map-marker" style="left: 35%; top: 60%;" onclick="showBusinessDetail(2)">☕</div>
+                <div class="map-marker" style="left: 70%; top: 70%;" onclick="showBusinessDetail(3)">🛒</div>
+                <div class="map-marker" style="left: 25%; top: 40%;" onclick="showBusinessDetail(4)">💊</div>
+
+                <!-- Bottom Carousel -->
+                <div class="bottom-carousel">
+                    <div class="carousel-card" onclick="showBusinessDetail(1)">
+                        <div class="carousel-card-image">🍽️</div>
+                        <div class="carousel-card-content">
+                            <div class="business-name">Restaurante El Cangrejo</div>
+                            <div class="business-category">Restaurantes • 0.8 km</div>
+                            <div class="business-rating">
+                                <span class="star">⭐</span> 4.8 (234)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-card" onclick="showBusinessDetail(2)">
+                        <div class="carousel-card-image">☕</div>
+                        <div class="carousel-card-content">
+                            <div class="business-name">Café Nutibara</div>
+                            <div class="business-category">Cafeterías • 1.2 km</div>
+                            <div class="business-rating">
+                                <span class="star">⭐</span> 4.5 (123)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-card" onclick="showBusinessDetail(3)">
+                        <div class="carousel-card-image">🛒</div>
+                        <div class="carousel-card-content">
+                            <div class="business-name">Santa María</div>
+                            <div class="business-category">Supermercados • 2.1 km</div>
+                            <div class="business-rating">
+                                <span class="star">⭐</span> 4.2 (89)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fab" onclick="showScreen('listScreen')">📋</div>
+
+            <div class="bottom-nav">
+                <div class="nav-item active" onclick="showScreen('mapScreen')">
+                    <div class="nav-icon">🗺️</div>
+                    <div class="nav-label">Mapa</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('listScreen')">
+                    <div class="nav-icon">🏪</div>
+                    <div class="nav-label">Negocios</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('promotionsScreen')">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('profileScreen')">
+                    <div class="nav-icon">👤</div>
+                    <div class="nav-label">Perfil</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: LISTA DE NEGOCIOS -->
+        <div class="screen" id="listScreen">
+            <div class="app-bar">
+                <h1>Negocios Cercanos</h1>
+                <div class="subtitle">5 negocios en tu zona</div>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Buscar negocios...">
+            </div>
+
+            <div class="category-filters">
+                <div class="category-chip active">Todos</div>
+                <div class="category-chip">🍽️ Restaurantes</div>
+                <div class="category-chip">☕ Cafeterías</div>
+                <div class="category-chip">🛒 Supermercados</div>
+            </div>
+
+            <div class="content-area">
+                <div class="business-card" onclick="showBusinessDetail(1)">
+                    <div class="business-logo">🍽️</div>
+                    <div class="business-info">
+                        <div class="business-name">Restaurante El Cangrejo</div>
+                        <div class="business-category">Restaurantes</div>
+                        <div class="business-rating">
+                            <span class="star">⭐</span> 4.8 (234 reseñas)
+                        </div>
+                        <div class="business-distance">📍 0.8 km de distancia</div>
+                    </div>
+                    <div class="promotion-badge">PROMO</div>
+                </div>
+
+                <div class="business-card" onclick="showBusinessDetail(2)">
+                    <div class="business-logo">☕</div>
+                    <div class="business-info">
+                        <div class="business-name">Café Nutibara</div>
+                        <div class="business-category">Cafeterías</div>
+                        <div class="business-rating">
+                            <span class="star">⭐</span> 4.5 (123 reseñas)
+                        </div>
+                        <div class="business-distance">📍 1.2 km de distancia</div>
+                    </div>
+                </div>
+
+                <div class="business-card" onclick="showBusinessDetail(3)">
+                    <div class="business-logo">🛒</div>
+                    <div class="business-info">
+                        <div class="business-name">Supermercado Santa María</div>
+                        <div class="business-category">Supermercados</div>
+                        <div class="business-rating">
+                            <span class="star">⭐</span> 4.2 (89 reseñas)
+                        </div>
+                        <div class="business-distance">📍 2.1 km de distancia</div>
+                    </div>
+                </div>
+
+                <div class="business-card" onclick="showBusinessDetail(4)">
+                    <div class="business-logo">💊</div>
+                    <div class="business-info">
+                        <div class="business-name">Farmacia Cruz Azul</div>
+                        <div class="business-category">Farmacias</div>
+                        <div class="business-rating">
+                            <span class="star">⭐</span> 4.6 (156 reseñas)
+                        </div>
+                        <div class="business-distance">📍 1.5 km de distancia</div>
+                    </div>
+                    <div class="promotion-badge">24/7</div>
+                </div>
+
+                <div class="business-card" onclick="showBusinessDetail(5)">
+                    <div class="business-logo">👕</div>
+                    <div class="business-info">
+                        <div class="business-name">Tienda De Prati</div>
+                        <div class="business-category">Ropa y Accesorios</div>
+                        <div class="business-rating">
+                            <span class="star">⭐</span> 4.3 (201 reseñas)
+                        </div>
+                        <div class="business-distance">📍 3.2 km de distancia</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="showScreen('mapScreen')">
+                    <div class="nav-icon">🗺️</div>
+                    <div class="nav-label">Mapa</div>
+                </div>
+                <div class="nav-item active" onclick="showScreen('listScreen')">
+                    <div class="nav-icon">🏪</div>
+                    <div class="nav-label">Negocios</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('promotionsScreen')">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('profileScreen')">
+                    <div class="nav-icon">👤</div>
+                    <div class="nav-label">Perfil</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: DETALLE DE NEGOCIO -->
+        <div class="screen" id="detailScreen">
+            <div class="detail-header">
+                🍽️
+            </div>
+            <div class="back-button" onclick="showScreen('listScreen')">←</div>
+
+            <div class="content-area">
+                <div class="detail-content">
+                    <div class="detail-title">Restaurante El Cangrejo</div>
+                    <div class="business-rating" style="margin-bottom: 20px;">
+                        <span class="star">⭐</span> 4.8 (234 reseñas)
+                    </div>
+
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+                        Especialidad en mariscos y comida costeña. El mejor ceviche de Guayaquil con ingredientes frescos del día.
+                    </p>
+
+                    <div class="promotion-card">
+                        <div class="promotion-title">🎁 Promoción Activa</div>
+                        <div class="promotion-description">
+                            2x1 en ceviches todos los miércoles. Válido hasta el 31 de enero.
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>INFORMACIÓN</h3>
+                        <div class="info-row">
+                            <span>📍</span>
+                            <div>
+                                <div style="font-weight: 600;">Dirección</div>
+                                <div style="color: #666; font-size: 14px;">Malecón 2000, local 45</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <span>📞</span>
+                            <div>
+                                <div style="font-weight: 600;">Teléfono</div>
+                                <div style="color: #0066CC; font-size: 14px;">+593 4 250 9012</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <span>🕐</span>
+                            <div>
+                                <div style="font-weight: 600;">Horario</div>
+                                <div style="color: #666; font-size: 14px;">Lun - Dom: 11:00 AM - 10:00 PM</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <span>🚗</span>
+                            <div>
+                                <div style="font-weight: 600;">Distancia</div>
+                                <div style="color: #666; font-size: 14px;">0.8 km desde tu ubicación</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button style="width: 100%; padding: 15px; background: #0066CC; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; margin-top: 20px; cursor: pointer;">
+                        Ver en Mapa
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: PROMOCIONES -->
+        <div class="screen" id="promotionsScreen">
+            <div class="app-bar">
+                <h1>Promociones Activas</h1>
+                <div class="subtitle">Ofertas cerca de ti</div>
+            </div>
+
+            <div class="content-area">
+                <div class="promotion-card">
+                    <div class="promotion-title">🍽️ 2x1 en Ceviches</div>
+                    <div class="promotion-description" style="margin-bottom: 10px;">
+                        Restaurante El Cangrejo - Todos los miércoles
+                    </div>
+                    <div style="font-size: 12px; opacity: 0.8;">📍 0.8 km • Válido hasta 31/01/2026</div>
+                </div>
+
+                <div class="promotion-card" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
+                    <div class="promotion-title">☕ Café + Postre $3.50</div>
+                    <div class="promotion-description" style="margin-bottom: 10px;">
+                        Café Nutibara - Todo el día
+                    </div>
+                    <div style="font-size: 12px; opacity: 0.8;">📍 1.2 km • Válido hasta 15/02/2026</div>
+                </div>
+
+                <div class="promotion-card" style="background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);">
+                    <div class="promotion-title">🛒 15% en Compras +$50</div>
+                    <div class="promotion-description" style="margin-bottom: 10px;">
+                        Supermercado Santa María - Fines de semana
+                    </div>
+                    <div style="font-size: 12px; opacity: 0.8;">📍 2.1 km • Válido hasta 28/01/2026</div>
+                </div>
+
+                <div class="info-banner">
+                    <h3>💡 Tip</h3>
+                    <p style="font-size: 14px; color: #666;">
+                        Activa las notificaciones para recibir alertas de nuevas promociones cerca de ti.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="showScreen('mapScreen')">
+                    <div class="nav-icon">🗺️</div>
+                    <div class="nav-label">Mapa</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('listScreen')">
+                    <div class="nav-icon">🏪</div>
+                    <div class="nav-label">Negocios</div>
+                </div>
+                <div class="nav-item active" onclick="showScreen('promotionsScreen')">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('profileScreen')">
+                    <div class="nav-icon">👤</div>
+                    <div class="nav-label">Perfil</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 5: PERFIL -->
+        <div class="screen" id="profileScreen">
+            <div class="app-bar">
+                <h1>Mi Perfil</h1>
+            </div>
+
+            <div class="content-area">
+                <div style="text-align: center; padding: 30px 20px;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px;">
+                        👤
+                    </div>
+                    <div style="font-size: 20px; font-weight: 600; margin-bottom: 5px;">Usuario</div>
+                    <div style="color: #666; font-size: 14px;">usuario@example.com</div>
+                </div>
+
+                <div style="padding: 0 20px;">
+                    <div class="info-row" style="cursor: pointer;">
+                        <span>❤️</span>
+                        <div>
+                            <div style="font-weight: 600;">Favoritos</div>
+                            <div style="color: #666; font-size: 14px;">3 negocios guardados</div>
+                        </div>
+                    </div>
+                    <div class="info-row" style="cursor: pointer;">
+                        <span>🔔</span>
+                        <div>
+                            <div style="font-weight: 600;">Notificaciones</div>
+                            <div style="color: #666; font-size: 14px;">Configurar alertas</div>
+                        </div>
+                    </div>
+                    <div class="info-row" style="cursor: pointer;">
+                        <span>📍</span>
+                        <div>
+                            <div style="font-weight: 600;">Ubicación</div>
+                            <div style="color: #666; font-size: 14px;">Guayaquil, Ecuador</div>
+                        </div>
+                    </div>
+                    <div class="info-row" style="cursor: pointer;">
+                        <span>⚙️</span>
+                        <div>
+                            <div style="font-weight: 600;">Configuración</div>
+                            <div style="color: #666; font-size: 14px;">Preferencias de la app</div>
+                        </div>
+                    </div>
+
+                    <div class="info-banner" style="margin-top: 30px;">
+                        <h3>💼 ¿Tienes un negocio?</h3>
+                        <p style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                            Regístrate y comienza a publicar promociones para atraer más clientes.
+                        </p>
+                        <button style="background: #0066CC; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            Registrar Negocio
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="showScreen('mapScreen')">
+                    <div class="nav-icon">🗺️</div>
+                    <div class="nav-label">Mapa</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('listScreen')">
+                    <div class="nav-icon">🏪</div>
+                    <div class="nav-label">Negocios</div>
+                </div>
+                <div class="nav-item" onclick="showScreen('promotionsScreen')">
+                    <div class="nav-icon">🎁</div>
+                    <div class="nav-label">Promociones</div>
+                </div>
+                <div class="nav-item active" onclick="showScreen('profileScreen')">
+                    <div class="nav-icon">👤</div>
+                    <div class="nav-label">Perfil</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functions
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+
+        function showBusinessDetail(businessId) {
+            showScreen('detailScreen');
+        }
+
+        function filterCategory(category) {
+            document.querySelectorAll('.category-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Simulate filtering
+            console.log('Filtering by:', category);
+        }
+
+        // Initialize
+        console.log('🚀 Prototipo MVP Marketplace Local Ecuador');
+        console.log('📱 Navega usando los botones de navegación inferior');
+        console.log('🗺️ Haz clic en los markers del mapa para ver detalles');
+    </script>
+</body>
+</html>
