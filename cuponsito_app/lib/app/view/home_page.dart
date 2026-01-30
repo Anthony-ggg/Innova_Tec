@@ -1,3 +1,7 @@
+import 'package:cuponsito_app/app/modules/client/pages/ui/profile_client_page.dart';
+import 'package:cuponsito_app/app/modules/common/ui/pages/alerts_page.dart';
+import 'package:cuponsito_app/app/modules/common/ui/pages/coupons_page.dart';
+import 'package:cuponsito_app/app/modules/common/ui/pages/favorites_page.dart';
 import 'package:cuponsito_app/app/modules/common/ui/pages/map_page.dart';
 import 'package:cuponsito_app/app/modules/common/ui/widgets/buttonNavigatorBar.dart';
 import 'package:cuponsito_app/config/theme/colors.dart';
@@ -17,30 +21,10 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     const MapPage(),
-    const SizedBox(
-      height: 500,
-      child: Center(
-        child: Text('Coupons'),
-      ),
-    ), // Placeholder for Coupons
-    const SizedBox(
-      height: 500,
-      child: Center(
-        child: Text('Favorites'),
-      ),
-    ), // Placeholder for Favorites
-    const SizedBox(
-      height: 500,
-      child: Center(
-        child: Text('Alerts'),
-      ),
-    ), // Placeholder for Alerts
-    const SizedBox(
-      height: 500,
-      child: Center(
-        child: Text('Profile'),
-      ),
-    ), // Placeholder for Profile
+    const CouponsPage(), // Placeholder for Coupons
+    const FavoritesPage(), // Favorites Page
+    const AlertsPage(), // Alerts Page
+    const ProfileClientPage(), // Profile Page
   ];
 
   @override
@@ -55,12 +39,19 @@ class _HomePageState extends State<HomePage> {
       body: _pages[_currentIndex],
       bottomNavigationBar: ButtonNavigatorBar(
         initialIndex: _currentIndex,
-        iconsList: const [
-          Icons.map,
-          Icons.confirmation_number_outlined,
-          Icons.favorite_border,
-          Icons.notifications_none,
-          Icons.person_outline,
+        items: const [
+          CustomBottomNavItem(icon: Icons.map_rounded, label: 'Mapa'),
+          CustomBottomNavItem(
+            icon: Icons.confirmation_number_rounded,
+            label: 'Cupones',
+          ),
+          CustomBottomNavItem(icon: Icons.favorite_rounded, label: 'Favoritos'),
+          CustomBottomNavItem(
+            icon: Icons.notifications_rounded,
+            label: 'Alertas',
+            hasBadge: true,
+          ),
+          CustomBottomNavItem(icon: Icons.person_rounded, label: 'Perfil'),
         ],
         onTap: (index) {
           setState(() {

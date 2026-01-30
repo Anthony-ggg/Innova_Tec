@@ -24,26 +24,36 @@ class MapPage extends StatelessWidget {
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) => Container(
                 color: Colors.grey[300],
-                child: const Center(child: Text('Map Placeholder')),
+                child: const Center(child: Text('Mapa de Ejemplo')),
               ),
             ),
           ),
 
           // 2. Simulated Markers (Absolute positioning)
-          const Positioned(
+          Positioned(
             left: 100, // left-1/4 approx
             top: 250, // top-1/3 approx
-            child: _MapMarker(
-              icon: Icons.restaurant,
-              type: MarkerType.primary,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/business-detail');
+              },
+              child: const _MapMarker(
+                icon: Icons.restaurant,
+                type: MarkerType.primary,
+              ),
             ),
           ),
-          const Positioned(
+          Positioned(
             right: 130, // right-1/3 approx
             top: 400, // top-1/2 approx
-            child: _MapMarker(
-              icon: Icons.shopping_bag,
-              type: MarkerType.secondary,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/business-detail');
+              },
+              child: const _MapMarker(
+                icon: Icons.shopping_bag,
+                type: MarkerType.secondary,
+              ),
             ),
           ),
 
@@ -108,8 +118,7 @@ class MapPage extends StatelessWidget {
                                   Expanded(
                                     child: TextField(
                                       decoration: InputDecoration(
-                                        hintText:
-                                            'Search for pizza, shopping...',
+                                        hintText: 'Buscar pizza, tiendas...',
                                         hintStyle: TextStyle(
                                           color: isDark
                                               ? Colors.grey[500]
@@ -177,21 +186,21 @@ class MapPage extends StatelessWidget {
                         children: [
                           _CategoryChip(
                             icon: Icons.restaurant,
-                            label: 'Food',
+                            label: 'Comida',
                             isSelected: true,
                             isDark: isDark,
                           ),
                           const SizedBox(width: 8),
                           _CategoryChip(
                             icon: Icons.shopping_bag,
-                            label: 'Retail',
+                            label: 'Tiendas',
                             isSelected: false,
                             isDark: isDark,
                           ),
                           const SizedBox(width: 8),
                           _CategoryChip(
                             icon: Icons.local_gas_station,
-                            label: 'Gas',
+                            label: 'Gasolina',
                             isSelected: false,
                             isDark: isDark,
                           ),

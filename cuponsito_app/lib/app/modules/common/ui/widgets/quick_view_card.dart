@@ -106,7 +106,9 @@ class QuickViewCard extends StatelessWidget {
 
                 // Button
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/coupon-detail');
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: const Color(0xFF0F172A),
@@ -126,7 +128,7 @@ class QuickViewCard extends StatelessWidget {
                       Icon(Icons.confirmation_number_outlined, size: 18),
                       SizedBox(width: 8),
                       Text(
-                        'Get Coupon',
+                        'OBTENER CUPÓN',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13,
