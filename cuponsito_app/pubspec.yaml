@@ -21,6 +21,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^10.0.0
+  flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
@@ -29,3 +30,53 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+
+
+flutter_launcher_icons:
+  # REQUIRED fallback
+  image_path: assets/icon/prod.png
+
+  # ===== ANDROID =====
+  android: true
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: assets/icon/prod.png
+  adaptive_icon_foreground_dev: assets/icon/dev.png
+  adaptive_icon_foreground_stg: assets/icon/stg.png
+
+  # ===== IOS =====
+  ios: true
+  remove_alpha_ios: true
+  image_path_ios: assets/icon/prod.png
+  image_path_ios_dev: assets/icon/dev.png
+  image_path_ios_stg: assets/icon/stg.png
+
+  # ===== WEB =====
+  web:
+    generate: true
+    image_path: assets/icon/prod.png
+    image_path_dev: assets/icon/dev.png
+    image_path_stg: assets/icon/stg.png
+    background_color: "#FFFFFF"
+    theme_color: "#FFFFFF"
+
+  # ===== WINDOWS =====
+  windows:
+    generate: true
+    image_path: assets/icon/prod.png
+    image_path_dev: assets/icon/dev.png
+    image_path_stg: assets/icon/stg.png
+    icon_size: 256
+
+  # ===== MACOS =====
+  macos:
+    generate: true
+    image_path: assets/icon/prod.png
+    image_path_dev: assets/icon/dev.png
+    image_path_stg: assets/icon/stg.png
+
+  # ===== LINUX =====
+  linux:
+    generate: true
+    image_path: assets/icon/prod.png
+    image_path_dev: assets/icon/dev.png
+    image_path_stg: assets/icon/stg.png
