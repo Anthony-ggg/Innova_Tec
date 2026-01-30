@@ -153,21 +153,27 @@ Future<void> _generateAndroidIcons(String flavor, String iconPath) async {
     valuesDir.createSync(recursive: true);
   }
 
-  // Crear directorio para drawable
-  final drawableDir = Directory('$baseDir/drawable');
-  if (!drawableDir.existsSync()) {
-    drawableDir.createSync(recursive: true);
-  }
-
   // Crear archivos XML para iconos adaptivos
   await _createAdaptiveIconXml(anydpiDir.path, 'ic_launcher.xml');
   await _createAdaptiveIconXml(anydpiDir.path, 'ic_launcher_round.xml');
 
   // Crear archivo de color de fondo
   await _createBackgroundColorXml(valuesDir.path);
-  
-  // Crear archivo drawable para el foreground
-  await _createForegroundDrawable(drawableDir.path, sourceImage);
+
+  // Crear foreground en mipmap-xxxhdpi (432x432 es el tamaño para xxxhdpi)
+  final xxxhdpiDir = Directory('$baseDir/mipmap-xxxhdpi');
+  if (!xxxhdpiDir.existsSync()) {
+    xxxhdpiDir.createSync(recursive: true);
+  }
+  final foregroundSize = 432;
+  final foreground = img.copyResize(
+    sourceImage,
+    width: foregroundSize,
+    height: foregroundSize,
+    interpolation: img.Interpolation.linear,
+  );
+  final foregroundFile = File('${xxxhdpiDir.path}/ic_launcher_foreground.png');
+  await foregroundFile.writeAsBytes(img.encodePng(foreground));
 
   print('     ✓ Archivos XML de iconos adaptivos creados');
 }
@@ -199,7 +205,7 @@ Future<void> _createAdaptiveIconXml(String dirPath, String fileName) async {
   final content = '''<?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@color/ic_launcher_background"/>
-    <foreground android:drawable="@drawable/ic_launcher_foreground"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
 </adaptive-icon>
 ''';
 
@@ -216,24 +222,6 @@ Future<void> _createBackgroundColorXml(String dirPath) async {
 
   final file = File('$dirPath/ic_launcher_background.xml');
   await file.writeAsString(content);
-}
-
-Future<void> _createForegroundDrawable(
-  String dirPath,
-  img.Image sourceImage,
-) async {
-  // Generar un foreground PNG de 108dp (432px para xxxhdpi)
-  final foregroundSize = 432;
-  final foreground = img.copyResize(
-    sourceImage,
-    width: foregroundSize,
-    height: foregroundSize,
-    interpolation: img.Interpolation.linear,
-  );
-
-  // Guardar como PNG en drawable
-  final file = File('$dirPath/ic_launcher_foreground.png');
-  await file.writeAsBytes(img.encodePng(foreground));
 }
 
 // ============================================================================
@@ -336,14 +324,14 @@ Future<void> _createIOSContentsJson(String dirPath) async {
       },
       {
         'filename': '512.png',
-        'idiom': 'mac', 
-        'scale': '2x', 
+        'idiom': 'mac',
+        'scale': '2x',
         'size': '256x256',
       },
       {
-        'filename': '512.png', 
-        'idiom': 'mac', 
-        'scale': '1x', 
+        'filename': '512.png',
+        'idiom': 'mac',
+        'scale': '1x',
         'size': '512x512',
       },
       {
