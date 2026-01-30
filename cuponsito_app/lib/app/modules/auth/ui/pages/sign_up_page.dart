@@ -164,7 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               children: [
                                 TextSpan(
-                                  text: 'CUPONEA',
+                                  text: 'CUPONSITO',
                                   style: TextStyle(
                                     color: isDark
                                         ? AppColors.primary

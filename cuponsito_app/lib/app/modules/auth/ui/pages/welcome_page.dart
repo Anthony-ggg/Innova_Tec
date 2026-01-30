@@ -118,7 +118,7 @@ class _LogoSection extends StatelessWidget {
               const SizedBox(width: 12),
               // Text
               const Text(
-                'CUPONEA',
+                'CUPONSITO',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,

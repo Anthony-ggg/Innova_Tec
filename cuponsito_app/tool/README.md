@@ -58,6 +58,8 @@ Para cada flavor en `android/app/src/{flavor}/res/`:
 │   └── ic_launcher_round.xml
 └── values/
     └── ic_launcher_background.xml
+└── drawable/
+    └── launch_background.xml (splash screen)
 ```
 
 ### 🍎 iOS

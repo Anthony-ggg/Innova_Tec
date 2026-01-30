@@ -41,7 +41,7 @@ class SignInPage extends StatelessWidget {
                         children: [
                           CustomBackButton(isDark: isDark),
                           Text(
-                            'CUPONEA',
+                            'CUPONSITO',
                             style: TextStyle(
                               color: isDark ? Colors.white : AppColors.textDark,
                               fontSize: 16,
