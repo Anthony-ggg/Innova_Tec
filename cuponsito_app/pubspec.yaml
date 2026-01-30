@@ -24,6 +24,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
+  image: ^4.0.0
   mocktail: ^1.0.4
   very_good_analysis: ^10.0.0
 
@@ -31,31 +32,34 @@ flutter:
   generate: true
   uses-material-design: true
 
+# ===== FLUTTER LAUNCHER ICONS =====
+# NOTA: Esta configuración solo genera iconos base.
+# Para iconos específicos por flavor en Android, usa:
+#   dart run tool/generate_flavor_icons.dart
+#
+# Los iconos de iOS por flavor ya están configurados correctamente
+# en ios/Runner/Assets.xcassets/
 
 flutter_launcher_icons:
   # REQUIRED fallback
   image_path: assets/icon/prod.png
 
   # ===== ANDROID =====
+  # Iconos base en android/app/src/main/res/
   android: true
   adaptive_icon_background: "#FFFFFF"
   adaptive_icon_foreground: assets/icon/prod.png
-  adaptive_icon_foreground_dev: assets/icon/dev.png
-  adaptive_icon_foreground_stg: assets/icon/stg.png
 
   # ===== IOS =====
+  # iOS soporta múltiples iconos por flavor nativamente
   ios: true
   remove_alpha_ios: true
   image_path_ios: assets/icon/prod.png
-  image_path_ios_dev: assets/icon/dev.png
-  image_path_ios_stg: assets/icon/stg.png
 
   # ===== WEB =====
   web:
     generate: true
     image_path: assets/icon/prod.png
-    image_path_dev: assets/icon/dev.png
-    image_path_stg: assets/icon/stg.png
     background_color: "#FFFFFF"
     theme_color: "#FFFFFF"
 
@@ -63,20 +67,14 @@ flutter_launcher_icons:
   windows:
     generate: true
     image_path: assets/icon/prod.png
-    image_path_dev: assets/icon/dev.png
-    image_path_stg: assets/icon/stg.png
     icon_size: 256
 
   # ===== MACOS =====
   macos:
     generate: true
     image_path: assets/icon/prod.png
-    image_path_dev: assets/icon/dev.png
-    image_path_stg: assets/icon/stg.png
 
   # ===== LINUX =====
   linux:
     generate: true
     image_path: assets/icon/prod.png
-    image_path_dev: assets/icon/dev.png
-    image_path_stg: assets/icon/stg.png
