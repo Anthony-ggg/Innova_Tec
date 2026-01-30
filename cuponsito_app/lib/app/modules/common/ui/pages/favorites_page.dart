@@ -15,12 +15,75 @@ class FavoritesPage extends StatelessWidget {
       backgroundColor: isDark
           ? AppColors.backgroundDark
           : AppColors.backgroundLight,
-      body: Stack(
-        children: [
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: isDark
+            ? AppColors.backgroundDark
+            : AppColors.backgroundLight,
+        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Negocios Favoritos',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -0.5,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Gestiona tus tiendas guardadas',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDark ? Colors.grey[400] : Colors.grey[500],
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        toolbarHeight: 80, // Increased height for subtitle
+        actions: [
+          Container(
+            margin: const EdgeInsets.only(right: 16),
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: isDark ? const Color(0xFF1E293B) : Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+              border: Border.all(
+                color: isDark
+                    ? Colors.white.withOpacity(0.1)
+                    : Colors.black.withOpacity(0.05),
+              ),
+            ),
+            child: Icon(
+              Icons.search,
+              color: isDark ? Colors.grey[300] : Colors.grey[600],
+              size: 24,
+            ),
+          ),
+        ],
+      ),
+      body:
           // Content List
           SingleChildScrollView(
             padding: const EdgeInsets.only(
-              top: 100, // Space for header
+              top: 120, // Space for header
               bottom: 120, // Space for navbar
               left: 20,
               right: 20,
@@ -70,103 +133,6 @@ class FavoritesPage extends StatelessWidget {
               ],
             ),
           ),
-
-          // Sticky Header
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(
-                    20,
-                    MediaQuery.of(context).padding.top + 16,
-                    20,
-                    16,
-                  ),
-                  decoration: BoxDecoration(
-                    color:
-                        (isDark
-                                ? AppColors.backgroundDark
-                                : AppColors.backgroundLight)
-                            .withOpacity(0.8),
-                    border: Border(
-                      bottom: BorderSide(
-                        color: isDark
-                            ? Colors.white.withOpacity(0.05)
-                            : Colors.black.withOpacity(0.05),
-                      ),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Negocios Favoritos',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -0.5,
-                            ),
-                          ),
-                          Container(
-                            width: 44,
-                            height: 44,
-                            decoration: BoxDecoration(
-                              color: isDark
-                                  ? const Color(0xFF1E293B)
-                                  : Colors.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.05),
-                                  blurRadius: 10,
-                                  offset: const Offset(0, 4),
-                                ),
-                              ],
-                              border: Border.all(
-                                color: isDark
-                                    ? Colors.white.withOpacity(0.1)
-                                    : Colors.black.withOpacity(0.05),
-                              ),
-                            ),
-                            child: Icon(
-                              Icons.search,
-                              color: isDark
-                                  ? Colors.grey[300]
-                                  : Colors.grey[600],
-                              size: 24,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Text(
-                            'Gestiona tus tiendas guardadas',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: isDark
-                                  ? Colors.grey[400]
-                                  : Colors.grey[500],
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

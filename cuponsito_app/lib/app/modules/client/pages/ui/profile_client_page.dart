@@ -53,7 +53,9 @@ class ProfileClientPage extends StatelessWidget {
                 Icons.settings,
                 color: isDark ? Colors.white : const Color(0xFF111813),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/settings');
+              },
               constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
               padding: EdgeInsets.zero,
             ),

@@ -10,304 +10,280 @@ class CouponsPage extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: isDark
+            ? AppColors.backgroundDark
+            : AppColors.backgroundLight,
+        elevation: 0,
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(
+                Icons.local_fire_department,
+                color: AppColors.primary,
+                size: 20,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Flexible(
+              child: Text(
+                'Mejores Ofertas',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                  color: isDark ? Colors.white : AppColors.textDark,
+                  letterSpacing: -0.5,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const SizedBox(width: 12),
+          ],
+        ),
+        // actions: [
+        //   Container(
+        //     margin: const EdgeInsets.only(right: 16),
+        //     width: 44,
+        //     height: 44,
+        //     decoration: BoxDecoration(
+        //       color: isDark
+        //           ? Colors.white.withOpacity(0.05)
+        //           : Colors.black.withOpacity(0.05),
+        //       shape: BoxShape.circle,
+        //       border: Border.all(
+        //         color: isDark
+        //             ? Colors.white.withOpacity(0.1)
+        //             : Colors.black.withOpacity(0.1),
+        //       ),
+        //     ),
+        //     child: Icon(
+        //       Icons.search,
+        //       color: isDark ? Colors.white : Colors.black87,
+        //       size: 22,
+        //     ),
+        //   ),
+        // ],
+      ),
       backgroundColor: isDark
           ? AppColors.backgroundDark
           : AppColors.backgroundLight,
-      body: Stack(
-        children: [
-          // Content
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(
-              top: 80,
-              bottom: 120,
-            ), // Space for header and nav
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // 1. Trending Section
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 8,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Tendencias',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800,
-                              color: isDark ? Colors.white : AppColors.textDark,
-                              letterSpacing: -0.5,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            'FAVORITOS DE LA COMUNIDAD',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.primary,
-                              letterSpacing: 1.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'VER TODO',
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(
+          top: 80,
+          bottom: 120,
+        ), // Space for header and nav
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // 1. Trending Section
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 20,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Tendencias',
                           style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            color: isDark ? Colors.white : AppColors.textDark,
+                            letterSpacing: -0.5,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          'FAVORITOS DE LA COMUNIDAD',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
                             color: AppColors.primary,
-                            letterSpacing: 1.2,
+                            letterSpacing: 1.0,
                           ),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-
-                // Trending Carousel
-                SizedBox(
-                  height: 320,
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    children: [
-                      _TrendingCard(
-                        isDark: isDark,
-                        imageUrl:
-                            'https://lh3.googleusercontent.com/aida-public/AB6AXuB2HJofpoaRX_nArwTbheSFWdjKbTaJsD1QNyu2etObywIw5ma9TQ8ofwxoSmXo_-8fMJhBW-kOy28Vq7r_G1Ap6uXhU867wApX1Tq_B-JgdfJYxwfoAs1Tt91Dye8cG-VBEFUxZFzuT77IsHKaBUbxe7io_IiSYBfiT8hUlNalfgvyrF4aWKVBBMxIODVem52-J66S_B63UO6541zPew7uLCHsoeR8VFC7RqF_mRkO7rAZxS9anJhzDr9meG7EOcV67WsmeIs_W0i8',
-                        discount: '80% DTO',
-                        title: 'Burger Palace',
-                        subtitle: 'Selección Premium • 1.2km',
-                        tagIcon: Icons.local_fire_department,
-                        tagLabel: 'Top',
-                        badgeLabel: 'Tendencia',
-                      ),
-                      const SizedBox(width: 16),
-                      _TrendingCard(
-                        isDark: isDark,
-                        imageUrl:
-                            'https://lh3.googleusercontent.com/aida-public/AB6AXuCTnEuN926hHwjObInFH-H5barCe2vmIZySrjeBKXsCcodNuKghM9zIWwb99IxbQfzcgX8kmj3eCsXtkBQgyaOXq1Mx-XFs2wCV1taI8jgQyzSNSD_DVjRIyckU7F7jIw3w27NdT4bfjV9jrhbnzj9TBy9FyGY2GElxnqpl1saf_8EVJiKXrZ9YW7s4rlzYOtbMO4ymL2mGNwbmVnODIN7VsL-ZjD7q7f27-u1DGTrqAWuktQQbPZttwvqSGsO6pXKKYCT8TcvcjqK0',
-                        discount: '70% DTO',
-                        title: 'Iron Temple Gym',
-                        subtitle: 'Pase Mensual • 0.8km',
-                        tagIcon: Icons.bolt,
-                        tagLabel: 'Oferta Flash',
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 32),
-
-                // 2. Ends Soon Section
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Termina Pronto',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800,
-                          color: isDark ? Colors.white : AppColors.textDark,
-                          letterSpacing: -0.5,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: isDark
-                              ? Colors.white.withOpacity(0.05)
-                              : Colors.black.withOpacity(0.05),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: isDark
-                                ? Colors.white.withOpacity(0.1)
-                                : Colors.black.withOpacity(0.1),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.hourglass_top,
-                              color: AppColors.primary,
-                              size: 14,
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              'TIEMPO LIMITADO',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w800,
-                                color: isDark
-                                    ? Colors.white
-                                    : AppColors.textDark,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                // List Items
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    children: [
-                      _CouponCard(
-                        isDark: isDark,
-                        imageUrl:
-                            'https://lh3.googleusercontent.com/aida-public/AB6AXuBEHW-u1LGb68iKQM1aPDvtowFyPyB20ADH2jk_QRno8UETg9omXaJeIrSLrEh12z7vmH7hluuA3jbFbbYM5oXLyddGa2F771l_ugoxtvW_PWTxdsmtz8T0wy6jQj27lswk5dk2NxsTDgD1P1dJN8jS6R4G1PJW30j1aXqYZkFPXY9akzi2HcgV1T9ozFSXnD_tTlsnC4F_qCAEL39EV4ywF0wleWPXxaTXEKTLVujuLCpp8dWllUqTRbd0h-ZJjIijPXHw6uVQa9_7',
-                        storeName: 'Tech Gadget Hub',
-                        title: 'Oferta Audio Inalámbrico',
-                        badgeText: 'ÚLTIMAS UNIDADES',
-                        badgeColor: Colors.red,
-                        timeLeft: '00:15:22',
-                        progress: 0.98,
-                        itemsLeftText: 'Crítico: ¡Solo quedan 2!',
-                        isCritical: true,
-                        isPulse: true,
-                      ),
-                      const SizedBox(height: 16),
-                      _CouponCard(
-                        isDark: isDark,
-                        imageUrl:
-                            'https://lh3.googleusercontent.com/aida-public/AB6AXuC7emgT-oxp1AqRt4SxJDlLbHA1EK6xc31HHGvgPn0054_xGCfDmPYViqEMoEBV5BAnG4GzjgjpkMpqCWHa3aMLVBAxgA45IQmk0zmTJ1NG3YgrJEpyYBbjI2VTQcIGa4l9C1Oyo8Q7o3c5Yp8JtfJGo_eUNHY9IRamLNK6cf3zVE54O5Ep06qLaLObE4mT4VBVJ8DN9l174K8963pv-wL_FUHBBIHNCnLnxCoPu7iLFxBHIDBy-N70zWjLuXcY71_6Yb6haS8A8tf3',
-                        storeName: 'Pizza Heaven',
-                        title: '75% DTO Combo Familiar',
-                        badgeText: 'OFERTÓN',
-                        badgeColor: AppColors.primary,
-                        timeLeft: '01:12:05',
-                        progress: 0.85,
-                        itemsLeftText: '¡Solo quedan 12!',
-                        isCritical: false,
-                        isPulse: false,
-                      ),
-                      const SizedBox(height: 16),
-                      _CouponCard(
-                        isDark: isDark,
-                        imageUrl:
-                            'https://lh3.googleusercontent.com/aida-public/AB6AXuCtbOHSP_RrAbWw6GBVu--k-ply16-Xyfyr__UGi5jAPQULxg_nwj_6Vc1Zbr3CNBEwvlwPkvhpLZeK1gWvr_9lTeQOspPwt2V4QJ9HDUUgdXPwiEdl9mH-BrCrKewbJVq5V5GQ8dZ9BP7FQDyWTbNkC136kyKZEjHf7l4UIPFX48u9u9xQbVYnBteUZrCVOmTn6-9KVCbYvmIlFfG9YjWWFk5j-fiwZudCB3qkNQOoUZMDXXX1NmWie9Q81X9pEOrog4j0vxBsZpf9',
-                        storeName: 'Zen Wellness Center',
-                        title: 'Terapia de Masaje Completa',
-                        badgeText: 'POPULAR',
-                        badgeColor: AppColors.primary,
-                        timeLeft: '02:45:30',
-                        progress: 0.40,
-                        itemsLeftText: '45 cupones restantes',
-                        isCritical: false,
-                        isPulse: false,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Custom Sticky Header
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(
-                    20,
-                    MediaQuery.of(context).padding.top + 8,
-                    20,
-                    16,
-                  ),
-                  decoration: BoxDecoration(
-                    color:
-                        (isDark
-                                ? AppColors.backgroundDark
-                                : AppColors.backgroundLight)
-                            .withOpacity(0.8),
-                    border: Border(
-                      bottom: BorderSide(
-                        color: isDark
-                            ? Colors.white.withOpacity(0.05)
-                            : Colors.black.withOpacity(0.05),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'VER TODO',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary,
+                        letterSpacing: 1.2,
                       ),
                     ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: const Icon(
-                              Icons.local_fire_department,
-                              color: AppColors.primary,
-                              size: 20,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Text(
-                            'Mejores Ofertas',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                              color: isDark ? Colors.white : AppColors.textDark,
-                              letterSpacing: -0.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        width: 44,
-                        height: 44,
-                        decoration: BoxDecoration(
-                          color: isDark
-                              ? Colors.white.withOpacity(0.05)
-                              : Colors.black.withOpacity(0.05),
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: isDark
-                                ? Colors.white.withOpacity(0.1)
-                                : Colors.black.withOpacity(0.1),
-                          ),
-                        ),
-                        child: Icon(
-                          Icons.search,
-                          color: isDark ? Colors.white : Colors.black87,
-                          size: 22,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ],
               ),
             ),
-          ),
-        ],
+
+            // Trending Carousel
+            SizedBox(
+              height: 320,
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  _TrendingCard(
+                    isDark: isDark,
+                    imageUrl:
+                        'https://lh3.googleusercontent.com/aida-public/AB6AXuB2HJofpoaRX_nArwTbheSFWdjKbTaJsD1QNyu2etObywIw5ma9TQ8ofwxoSmXo_-8fMJhBW-kOy28Vq7r_G1Ap6uXhU867wApX1Tq_B-JgdfJYxwfoAs1Tt91Dye8cG-VBEFUxZFzuT77IsHKaBUbxe7io_IiSYBfiT8hUlNalfgvyrF4aWKVBBMxIODVem52-J66S_B63UO6541zPew7uLCHsoeR8VFC7RqF_mRkO7rAZxS9anJhzDr9meG7EOcV67WsmeIs_W0i8',
+                    discount: '80% DTO',
+                    title: 'Burger Palace',
+                    subtitle: 'Selección Premium • 1.2km',
+                    tagIcon: Icons.local_fire_department,
+                    tagLabel: 'Top',
+                    badgeLabel: 'Tendencia',
+                  ),
+                  const SizedBox(width: 16),
+                  _TrendingCard(
+                    isDark: isDark,
+                    imageUrl:
+                        'https://lh3.googleusercontent.com/aida-public/AB6AXuCTnEuN926hHwjObInFH-H5barCe2vmIZySrjeBKXsCcodNuKghM9zIWwb99IxbQfzcgX8kmj3eCsXtkBQgyaOXq1Mx-XFs2wCV1taI8jgQyzSNSD_DVjRIyckU7F7jIw3w27NdT4bfjV9jrhbnzj9TBy9FyGY2GElxnqpl1saf_8EVJiKXrZ9YW7s4rlzYOtbMO4ymL2mGNwbmVnODIN7VsL-ZjD7q7f27-u1DGTrqAWuktQQbPZttwvqSGsO6pXKKYCT8TcvcjqK0',
+                    discount: '70% DTO',
+                    title: 'Iron Temple Gym',
+                    subtitle: 'Pase Mensual • 0.8km',
+                    tagIcon: Icons.bolt,
+                    tagLabel: 'Oferta Flash',
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 32),
+
+            // 2. Ends Soon Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Termina Pronto',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
+                        color: isDark ? Colors.white : AppColors.textDark,
+                        letterSpacing: -0.5,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? Colors.white.withOpacity(0.05)
+                          : Colors.black.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: isDark
+                            ? Colors.white.withOpacity(0.1)
+                            : Colors.black.withOpacity(0.1),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.hourglass_top,
+                          color: AppColors.primary,
+                          size: 14,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          'TIEMPO LIMITADO',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: isDark ? Colors.white : AppColors.textDark,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // List Items
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  _CouponCard(
+                    isDark: isDark,
+                    imageUrl:
+                        'https://lh3.googleusercontent.com/aida-public/AB6AXuBEHW-u1LGb68iKQM1aPDvtowFyPyB20ADH2jk_QRno8UETg9omXaJeIrSLrEh12z7vmH7hluuA3jbFbbYM5oXLyddGa2F771l_ugoxtvW_PWTxdsmtz8T0wy6jQj27lswk5dk2NxsTDgD1P1dJN8jS6R4G1PJW30j1aXqYZkFPXY9akzi2HcgV1T9ozFSXnD_tTlsnC4F_qCAEL39EV4ywF0wleWPXxaTXEKTLVujuLCpp8dWllUqTRbd0h-ZJjIijPXHw6uVQa9_7',
+                    storeName: 'Tech Gadget Hub',
+                    title: 'Oferta Audio Inalámbrico',
+                    badgeText: 'ÚLTIMAS UNIDADES',
+                    badgeColor: Colors.red,
+                    timeLeft: '00:15:22',
+                    progress: 0.98,
+                    itemsLeftText: 'Crítico: ¡Solo quedan 2!',
+                    isCritical: true,
+                    isPulse: true,
+                  ),
+                  const SizedBox(height: 16),
+                  _CouponCard(
+                    isDark: isDark,
+                    imageUrl:
+                        'https://lh3.googleusercontent.com/aida-public/AB6AXuC7emgT-oxp1AqRt4SxJDlLbHA1EK6xc31HHGvgPn0054_xGCfDmPYViqEMoEBV5BAnG4GzjgjpkMpqCWHa3aMLVBAxgA45IQmk0zmTJ1NG3YgrJEpyYBbjI2VTQcIGa4l9C1Oyo8Q7o3c5Yp8JtfJGo_eUNHY9IRamLNK6cf3zVE54O5Ep06qLaLObE4mT4VBVJ8DN9l174K8963pv-wL_FUHBBIHNCnLnxCoPu7iLFxBHIDBy-N70zWjLuXcY71_6Yb6haS8A8tf3',
+                    storeName: 'Pizza Heaven',
+                    title: '75% DTO Combo Familiar',
+                    badgeText: 'OFERTÓN',
+                    badgeColor: AppColors.primary,
+                    timeLeft: '01:12:05',
+                    progress: 0.85,
+                    itemsLeftText: '¡Solo quedan 12!',
+                    isCritical: false,
+                    isPulse: false,
+                  ),
+                  const SizedBox(height: 16),
+                  _CouponCard(
+                    isDark: isDark,
+                    imageUrl:
+                        'https://lh3.googleusercontent.com/aida-public/AB6AXuCtbOHSP_RrAbWw6GBVu--k-ply16-Xyfyr__UGi5jAPQULxg_nwj_6Vc1Zbr3CNBEwvlwPkvhpLZeK1gWvr_9lTeQOspPwt2V4QJ9HDUUgdXPwiEdl9mH-BrCrKewbJVq5V5GQ8dZ9BP7FQDyWTbNkC136kyKZEjHf7l4UIPFX48u9u9xQbVYnBteUZrCVOmTn6-9KVCbYvmIlFfG9YjWWFk5j-fiwZudCB3qkNQOoUZMDXXX1NmWie9Q81X9pEOrog4j0vxBsZpf9',
+                    storeName: 'Zen Wellness Center',
+                    title: 'Terapia de Masaje Completa',
+                    badgeText: 'POPULAR',
+                    badgeColor: AppColors.primary,
+                    timeLeft: '02:45:30',
+                    progress: 0.40,
+                    itemsLeftText: '45 cupones restantes',
+                    isCritical: false,
+                    isPulse: false,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -598,17 +574,22 @@ class _CouponCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          storeName.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w800,
-                            color: isDark
-                                ? Colors.white.withOpacity(0.5)
-                                : Colors.grey[600],
-                            letterSpacing: 1.0,
+                        Flexible(
+                          child: Text(
+                            storeName.toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w800,
+                              color: isDark
+                                  ? Colors.white.withOpacity(0.5)
+                                  : Colors.grey[600],
+                              letterSpacing: 1.0,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
                         ),
+                        const SizedBox(width: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 6,
@@ -641,6 +622,8 @@ class _CouponCard extends StatelessWidget {
                         color: isDark ? Colors.white : AppColors.textDark,
                         height: 1.2,
                       ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 12),
                     Container(
@@ -714,13 +697,17 @@ class _CouponCard extends StatelessWidget {
                   letterSpacing: 1.2,
                 ),
               ),
-              Text(
-                itemsLeftText,
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w900,
-                  fontStyle: FontStyle.italic,
-                  color: isCritical ? Colors.red : AppColors.primary,
+              Expanded(
+                child: Text(
+                  itemsLeftText,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w900,
+                    fontStyle: FontStyle.italic,
+                    color: isCritical ? Colors.red : AppColors.primary,
+                  ),
+                  textAlign: TextAlign.end,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
